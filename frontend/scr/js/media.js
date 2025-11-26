@@ -2,30 +2,26 @@ import { adicionarFavoritos, favoritos, deletarFavoritos } from "./banco.js";
 import { usuarioLogado } from "./menu.js";
 import { carregarPupulares, carregarFilmeSeries, buscarDetalhesMidia } from "./consumoApiTmdb/tmdbAPI.js";
 
-//Url imagem 
+
 export const urlImage = "https://image.tmdb.org/t/p/w500";
 
-//Variaveis Do conteiner Onde aprecer filmes Populares
+
 export const containerCardPopulares = document.querySelector(`#div_populares`);
 export const btnEsquerda = document.querySelector(`#btn_esquerda`);
 export const btnDireita = document.querySelector(`#btn_direita`);
 
 
-//Botoes de Categoria
 export const botoesCategoria = document.querySelectorAll(".categorias");
 export const btnAcao = document.getElementById(`28`);
 
-//Variaveis os filmes normais e categorias
 const divFilmes = document.querySelector("#div_filmes");
 export const btnVoltarFilme = document.querySelector(`#btn_voltar_filmes`);
 export const btnBuscarFilmes = document.querySelector(`#btn_buscar_filmes`);
 
-//Variaveis Div que exibe SERIES
 const divSeries = document.querySelector("#div_series");
 export const btnVoltarSerie = document.querySelector(`#btn_voltar_series`);
 export const btnBuscarSerie = document.querySelector(`#btn_buscar_series`);
 
-//Botoes para abrir trailers
 const btnAbrirVideoTrailer = document.querySelectorAll(".btn_trailer_info");
 
 const tituloInfo = document.querySelector("#titulo_info");
@@ -38,17 +34,14 @@ const btnFavoritar = document.querySelector("#btn_favoritar");
 const divBtnFavoritar = document.querySelector("#div_btn_favoritar");
 
 
-//Capturar categoria
 let categoriaSelecionada = 28;
 const corCategoriaSelecionada = "#40ECFF";
 
-//Contadores
 let paginaUrl = 1;
 let inicio = 0;
 let fim = 4;
 
 
-//Containes Do VIDEO QUE EXIBE
 const containerVideo = document.querySelector(".container_video");
 const ifrimeVideo = document.querySelector("#iframe_video");
 const fechar_Trailer = document.querySelector("#btn_fechar_trailer");
@@ -104,7 +97,6 @@ function criarCardPopulares(element, tipo, index) {
 }
 
 
-//Função para adicionar na setaBuscar mais populares
 export function adicionarCardPopulares(tipo) {
     if (fim != 20) {
         inicio += 4;
@@ -117,7 +109,6 @@ export function adicionarCardPopulares(tipo) {
     }
 }
 
-//Função para voltar na SETAVOLTAR cards Populares
 export function voltarCardPopulares(tipo) {
     if (inicio != 0) {
         inicio -= 4;
@@ -131,7 +122,6 @@ export function voltarCardPopulares(tipo) {
     }
 }
 
-//Função para buscar filmes e series para DivSerie e DIvFilmes
 export async function buscarFilmeSerie(tipo, categoria, pagina) {
 
     const lista = await carregarFilmeSeries(tipo, categoria, pagina);
@@ -151,7 +141,6 @@ function criarCardFilmeSerie(element, tipo) {
     const date = document.createElement("p");
     const img = document.createElement("img");
 
-    //Montando Card padrão
     principal.className = "div_cards";
 
     divSombra.addEventListener("click", async() => {
@@ -194,7 +183,6 @@ function criarCardFilmeSerie(element, tipo) {
 }
 
 
-//Função para buscar mais cards filmes para DivFilmes e DivSeries
 export async function adicionarCardsDivFilmeSerie(tipo, categoria, conversorCategoriaSerie) {
     switch (tipo) {
         case "filme":
@@ -227,7 +215,6 @@ export async function adicionarCardsDivFilmeSerie(tipo, categoria, conversorCate
 
 }
 
-//Função para voltar cards series para DivFilmes e DivSeries
 export function voltarCardsDivFilmeSerie(tipo, categoria, conversorCategoriaSerie) {
     switch (tipo) {
         case "filme":
@@ -262,7 +249,6 @@ export function voltarCardsDivFilmeSerie(tipo, categoria, conversorCategoriaSeri
 
 
 
-//Funções para abrir e fechar card informação filmes
 fechar_Trailer.addEventListener("click", () => {
     containerPrincipalInfo.style.display = "none";
 })
