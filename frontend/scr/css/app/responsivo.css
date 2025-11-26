@@ -1,0 +1,337 @@
+@media ((min-width: 800px) and (max-width: 1100px)) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  header {
+    width: 743px;
+    height: 70px;
+    margin-bottom: 30px;
+  }
+  .container_populares {
+    width: 788px;
+    height: 200px;
+    align-self: center;
+    gap: 10px;
+  }
+  #div_populares {
+    width: 728px;
+    height: 199.22px;
+    gap: 10px;
+  }
+  #div_populares button {
+    width: 100px;
+    height: 20px;
+    font-size: 10px;
+  }
+  #div_populares img {
+    width: 24px;
+    height: 24px;
+  }
+  #div_populares p {
+    font-size: 18px;
+  }
+  .estilo_sem_mouse,
+  .estilo_degrade_popular {
+    width: 110px;
+    height: 170.5px;
+  }
+  .estilo_sem_mouse h1,
+  .estilo_degrade_popular h1 {
+    font-size: 16px;
+  }
+  .estilo_com_mouse,
+  .estilo_degrade_com_mouse {
+    width: 300px;
+    height: 170.5px;
+  }
+  .estilo_com_mouse h1,
+  .estilo_degrade_com_mouse h1 {
+    font-size: 16px;
+  }
+  .estilo_sem_mouse:hover {
+    width: 300px;
+  }
+  .estilo_sem_mouse:hover .estilo_degrade_popular {
+    width: 300px;
+    height: 170.5px;
+  }
+  #div_populares:hover .estilo_com_mouse:not(:hover) {
+    width: 127px;
+  }
+  #div_populares:hover .estilo_com_mouse:not(:hover) .estilo_degrade_com_mouse:not(:hover) {
+    width: 127px;
+  }
+  #btn_esquerda:active img,
+  #btn_direita:active img {
+    width: 20px;
+    height: 20px;
+  }
+  #btn_esquerda,
+  #btn_direita {
+    padding: 5px;
+  }
+  #btn_esquerda img,
+  #btn_direita img {
+    width: 20px;
+    height: 20px;
+  }
+  .container_categorias {
+    width: 710px;
+  }
+  .categorias,
+  .ativa {
+    width: 100px;
+    height: 40px;
+    font-size: 13px;
+  }
+  .div_adicionar_cards {
+    width: 700px;
+  }
+  #filmes_setas {
+    width: 788px;
+    min-height: 600px;
+  }
+  #div_series,
+  #div_filmes {
+    width: 662px;
+    min-height: 800px;
+    flex-wrap: wrap;
+    gap: 17px;
+  }
+  .div_cards {
+    width: 151px;
+    height: 227px;
+  }
+  .div_cards img {
+    width: 151px;
+    height: 227px;
+  }
+  .div_cards #estilo_div_cards {
+    height: 227px;
+  }
+  .div_cards #estilo_div_cards #titulo_div_Filmes {
+    font-size: 13px;
+  }
+  .div_cards #estilo_div_cards div {
+    width: 121px;
+    height: 150px;
+    font-size: 10px;
+  }
+  .div_cards #estilo_div_cards div img {
+    height: 20px;
+    width: 20px;
+  }
+  .div_cards #estilo_div_cards div p {
+    margin-left: 10px;
+  }
+  .div_cards:hover {
+    transform: translateY(-14px);
+  }
+  .div_cards:hover #estilo_div_cards {
+    width: 151px;
+    height: 227px;
+  }
+  .container_informacao {
+    max-width: 790px;
+  }
+  #texto_sinopse {
+    font-size: 13px;
+    max-width: 450px;
+  }
+  .elenco {
+    max-width: 450px;
+  }
+  .container_video iframe {
+    width: 780px;
+    height: 400px;
+  }
+  .container_pesquisa {
+    gap: 20px;
+  }
+  .numero_busca {
+    width: 210px;
+    height: 190px;
+  }
+  .numero_busca button {
+    width: 191px;
+  }
+  .pesquisa_filme,
+  .pesquisa_serie {
+    width: 500px;
+    height: 600px;
+  }
+  #resultado_filme {
+    width: 477px;
+    min-height: 161px;
+  }
+  #resultado_filme img {
+    width: 207px;
+    height: 100%;
+  }
+  #resultado_filme h3 {
+    margin-top: 7px;
+  }
+  #sinopse_pesquisa {
+    margin-top: 0px;
+    font-size: 11px;
+    width: 220px;
+  }
+  .container_favoritar {
+    width: 750px;
+  }
+  .card_favorito_filme,
+  .card_favorito_serie {
+    width: 690px;
+  }
+}
+@media ((min-width: 1101px) and (max-width: 1400px)) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container_populares {
+    width: 1090px;
+    min-height: 200px;
+    align-self: center;
+    gap: 10px;
+  }
+  #div_populares {
+    width: 990px;
+    height: 285px;
+    gap: 10px;
+  }
+  #div_populares button {
+    width: 100px;
+    height: 20px;
+    font-size: 10px;
+  }
+  #div_populares img {
+    width: 24px;
+    height: 24px;
+  }
+  #div_populares p {
+    font-size: 25px;
+  }
+  .estilo_sem_mouse,
+  .estilo_degrade_popular {
+    width: 197px;
+    height: 285px;
+  }
+  .estilo_sem_mouse h1,
+  .estilo_degrade_popular h1 {
+    font-size: 20px;
+  }
+  .estilo_com_mouse,
+  .estilo_degrade_com_mouse {
+    width: 369px;
+    height: 285px;
+  }
+  .estilo_com_mouse h1,
+  .estilo_degrade_com_mouse h1 {
+    font-size: 20px;
+  }
+  .estilo_sem_mouse:hover {
+    width: 369px;
+  }
+  .estilo_sem_mouse:hover .estilo_degrade_popular {
+    width: 369px;
+    height: 285px;
+  }
+  #div_populares:hover .estilo_com_mouse:not(:hover) {
+    width: 197px;
+  }
+  #div_populares:hover .estilo_com_mouse:not(:hover) .estilo_degrade_com_mouse:not(:hover) {
+    width: 197px;
+  }
+  #btn_esquerda:active img,
+  #btn_direita:active img {
+    width: 20px;
+    height: 20px;
+  }
+  #btn_esquerda,
+  #btn_direita {
+    padding: 5px;
+  }
+  #btn_esquerda img,
+  #btn_direita img {
+    width: 20px;
+    height: 20px;
+  }
+  .container_categorias {
+    width: 990px;
+  }
+  .categorias,
+  .ativa {
+    width: 150px;
+    height: 60px;
+    font-size: 16px;
+  }
+  .div_adicionar_cards {
+    width: 990px;
+  }
+  #filmes_setas {
+    width: 1090px;
+    min-height: 600px;
+  }
+  #div_series,
+  #div_filmes {
+    width: 990px;
+    min-height: 500px;
+    flex-wrap: wrap;
+    gap: 17px;
+  }
+  .div_cards {
+    width: 148px;
+    height: 218px;
+  }
+  .div_cards img {
+    width: 148px;
+    height: 218px;
+  }
+  .div_cards #estilo_div_cards {
+    height: 218px;
+  }
+  .div_cards #estilo_div_cards #titulo_div_Filmes {
+    font-size: 13px;
+  }
+  .div_cards #estilo_div_cards div {
+    width: 146px;
+    height: 150px;
+    font-size: 10px;
+  }
+  .div_cards #estilo_div_cards div img {
+    height: 20px;
+    width: 20px;
+  }
+  .div_cards #estilo_div_cards div p {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .div_cards:hover {
+    transform: translateY(-14px);
+  }
+  .div_cards:hover #estilo_div_cards {
+    width: 148px;
+    height: 218px;
+  }
+  .container_informacao {
+    width: 1050px;
+    justify-content: space-between;
+  }
+  #texto_sinopse {
+    font-size: 13px;
+    max-width: 440px;
+  }
+  .elenco {
+    width: 495px;
+  }
+  .container_video iframe {
+    width: 1050px;
+    height: 500px;
+  }
+}/*# sourceMappingURL=responsivo.css.map */

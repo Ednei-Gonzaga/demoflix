@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DemoFlix</title>
+    <link rel="stylesheet" href="/scr/css/index/style.css">
+</head>
+
+<body>
+    <main></main>
+   <header>
+        <div class="mensagem_situacao">
+            <p id="mensagem_situacao_login">Situação Login</p>
+        </div>
+   </header>
+   
+    <main>
+        <div class="estilo_div_login animacao_login" id="div_login">
+            <h1>DemoFlix</h1>
+            <div>
+                <p>e-mail</p>
+                <input type="email" placeholder="Digite seu email" id="input_email_login">
+            </div>
+
+            <div>
+                <p>Senha</p>
+                <input type="password" maxlength="16" placeholder="Digite sua senha" id="input_senha_login">
+            </div>
+
+            <button id="btn_login">Login</button>
+            <p>Não tem conta? <a href="#" id="btn_abrir_div_criar">Criar</a></p>
+
+        </div>
+
+        <div class="estilo_div_login animacao_login" id="div_criar">
+             <h1>DemoFlix</h1>
+            
+             <div>
+                <p>Nome Usuário</p>
+                <input type="text" id="input_criar_usuario" placeholder="Crie um nome usuário">
+            </div>
+            
+             <div>
+                <p>e-mail</p>
+                <input type="text" id="input_criar_email" placeholder="Crie seu email">
+            </div>
+
+            <div style="margin-bottom: 44px;">
+                <p>Senha</p>
+                <input type="password"   maxlength="16" id="input_criar_senha" placeholder="Crie sua senha">
+                <input type="password"  maxlength="16" id="input_confirmar_senha" placeholder="Confirme sua senha">
+            </div>
+
+            <button id="btn_criar_conta">Criar</button>
+
+            <p>Não tem conta? <a href="#" id="btn_abrir_div_login">Login</a></p>
+        </div>
+    </main>
+
+    <script src="scr/js/index.js" src="scr/pages/app.js" type="module"></script>
+</body>
+</html>

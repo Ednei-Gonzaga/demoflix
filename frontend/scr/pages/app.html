@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DemoFlix</title>
+    <link rel="stylesheet" href="/scr/css/app/style.css">
+    <link rel="stylesheet" href="/scr/css/app/responsivo.css">
+</head>
+
+<body>
+
+    <header>
+        <div id="container_logo">
+            <img src="/public/logo.png" alt="">
+            <h1>DemoFlix</h1>
+        </div>
+
+
+        <div class="container_links_pesquisa">
+            <div id="div_links">
+                <nav>
+                    <a href="#" id="home" class="links_paginacao">Home</a>
+                    <a href="#" id="filme" class="links_paginacao">Filmes</a>
+                    <a href="#" id="serie" class="links_paginacao">Séries</a>
+                </nav>
+
+                <button id="btn_abrir_pesquisa" class="buttonMenu"><img src="/public/lupa.png" alt=""></button>
+            </div>
+
+            <div id="div_pesquisa">
+
+                <button id="btn_fechar_pesquisa" class="buttonMenu"><img src="/public/botao-fechar.png" alt=""></button>
+                <input type="text" id="text_pesquisado" placeholder="Digite o nome filme ou série">
+                <button id="btn_pesquisa" class="buttonMenu"><img src="/public/lupa.png" alt=""></button>
+
+            </div>
+        </div>
+
+
+        <button id="btn_cinfiguracao"><img src="/public/configuracao.png" alt=""></button>
+
+        <div class="menu animacao_menu">
+            <button id="btn_fechar_menu"><img src="/public/botao-fechar.png" alt="" width="20"></button>
+            <div>
+                <img src="/public/user.png" alt="" width="64" id="img_usuario">
+                <p id="nome_usuario">Nome Pesooa</p>
+                <p id="gmail_usuario">teste@gmail.com</p>
+            </div>
+
+            <button id="btn_abrir_favoritos" class="btn_normal"><img src="/public/favorito.png" alt="" width="32">
+                Favoritos</button>
+            <button id="btn_deletar_conta" class="btn_normal"><img src="/public/excluir.png" alt="" width="25"> Deletar
+                Conta</button>
+            <button id="btn_sair_conta"><img src="/public/sair.png" alt="" width="30"> Sair</button>
+
+        </div>
+
+        <div class="animacao_deletar div_confirmacao">
+            <p id="texto">Tem Certeza que deseja deletar conta?</p>
+            <button id="btn_sim">Sim</button>
+            <button id="btn_nao">Não</button>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="container_populares">
+            <button id="btn_esquerda"><img src="/public/seta-esquerda.png" alt=""></button>
+
+            <div id="div_populares">
+
+            </div>
+
+            <button id="btn_direita"><img src="/public/seta-direita.png" alt=""></button>
+        </div>
+
+
+        <div class="container_categorias" id="categoria_filme">
+            <button class="categorias" id="28">Ação</button>
+            <button class="categorias" id="12">Aventura</button>
+            <button class="categorias" id="53">Suspense</button>
+            <button class="categorias" id="35">Comédia</button>
+            <button class="categorias" id="27">Terror</button>
+            <button class="categorias" id="10751">Família</button>
+        </div>
+
+        <div class="container_filmes">
+            <div class="div_adicionar_cards" id="div_filme_mais">
+                <h1>Filmes</h1>
+            </div>
+
+            <div id="filmes_setas">
+                <button id="btn_voltar_filmes"><img src="/public/seta-esquerda.png" alt=""></button>
+                <div id="div_filmes">
+
+
+
+
+                </div>
+                <button id="btn_buscar_filmes"><img src="/public/seta-direita.png" alt=""></button>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="container_series">
+            <div class="div_adicionar_cards" id="div_serie_mais">
+                <h1>Séries</h1>
+            </div>
+
+            <div id="filmes_setas">
+                <button id="btn_voltar_series"><img src="/public/seta-esquerda.png" alt=""></button>
+                <div id="div_series">
+
+                </div>
+                <button id="btn_buscar_series"><img src="/public/seta-direita.png" alt=""></button>
+
+            </div>
+
+        </div>
+
+        </div>
+
+
+        <div class="container_trailer_info">
+            <div class="div_fechar_trailer">
+                <button id="btn_fechar_trailer"><img src="/public/botao-fechar.png" alt="" width="50"></button>
+            </div>
+
+            <div class="container_informacao">
+
+                <img src="/public/Gemini_Generated_Image_662iot662iot662i.png" alt="" id="img_container_info">
+
+                <div id="div_info_filme">
+
+                    <h1 id="titulo_info">Titulo</h1>
+                    <p id="ano_lancamento">20/12/34</p>
+
+                    <div id="div_favoritar_e_avaliacao">
+                        <p id="avaliacao"><img src="/public/estrela.png" alt=""> 7.2</p>
+                        <div id="div_btn_favoritar">
+                        </div>
+                        <button class="btn_trailer_info"><img src="/public/botao-play.png" alt=""> Assistir
+                            Trailer</button>
+                    </div>
+
+                    <h2>Sinopse</h2>
+                    <p id="texto_sinopse"></p>
+
+                    <h2>Elenco Principal</h2>
+                    <div class="elenco">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container_video">
+            <div class="div_fechar_trailer">
+                <button id="btn_fechar_video"><img src="/public/botao-fechar.png" alt="" width="50"></button>
+            </div>
+            <iframe src="" frameborder="0" id="iframe_video"></iframe>
+        </div>
+
+        <div class="container_pesquisa">
+            <div class="numero_busca">
+                <h2>Resultado Busca</h2>
+                <button id="btn_carregar_filmes" class="btn_normal botoes_conta">
+                    <p>Filmes</p>
+                    <p id="text_qtd_filmes">0</p>
+                </button>
+                <button id="btn_carregar_series" class="btn_normal botoes_conta">
+                    <p>Series</p>
+                    <p id="text_qtd_series">0</p>
+                </button>
+            </div>
+
+            <div class="container_cards_filmes_pesquisado">
+                <div class="pesquisa_filme">
+
+                </div>
+                <div class="setas_pesquisa">
+                    <button id="btn_voltar_pesquisa_filme"><img src="/public/seta-esquerda.png" alt=""></button>
+                    <p><span id="pagina_atual_filme">0</span> / <span id="total_pagina_filme">0</span></p>
+                    <button id="btn_buscar_pesquisa_filme"><img src="/public/seta-direita.png" alt=""></button>
+                </div>
+            </div>
+
+            <div class="container_cards_series_pesquisado">
+                <div class="pesquisa_serie">
+
+                </div>
+                <div class="setas_pesquisa">
+                    <button id="btn_voltar_pesquisa_serie"><img src="/public/seta-esquerda.png" alt=""></button>
+                    <p><span id="pagina_atual_serie">0</span> / <span id="total_pagina_serie">0</span></p>
+                    <button id="btn_buscar_pesquisa_serie"><img src="/public/seta-direita.png" alt=""></button>
+                </div>
+            </div>
+
+          
+        </div>
+
+        <div class="container_favoritar">
+            <h1>Minha Lista de Filmes e Series <button id="btn_fechar_favorito"><img src="/public/botao-fechar.png"
+                        alt=""></button></h1>
+
+            <div id="botoes_favoritar">
+                <button id="btn_todos" class="btn_normal_favoritar">Todos</button>
+                <button id="btn_filmes_favoritar" class="btn_normal_favoritar">Filmes</button>
+                <button id="btn_series_favoritar" class="btn_normal_favoritar">Séries</button>
+            </div>
+
+            <div class="div_filmes_favoritos">
+                <h2>Filmes</h2>
+                <div class="card_favorito_filme">
+                    <div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="div_series_favoritos">
+                <h2>Séries</h2>
+                <div class="card_favorito_serie">
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/scr/js/home.js" type="module"></script>
+    <script src="/scr/js/pesquisa.js" type="module"></script>
+    <script src="/scr/js/menu.js" type="module"></script>
+    <script src="/scr/js/favorito.js" type="module"></script>
+
+</body>
+
+</html>
