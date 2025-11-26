@@ -2,7 +2,7 @@
 
 ## 📖 Sobre o Projeto
 
-O DemoFlix é uma aplicação Fullstack desenvolvida para consolidar competências técnicas em Java (Spring Boot), JavaScript, HTML e CSS. O sistema consome dados externos da API do TMDB para oferecer um catálogo imersivo de filmes e séries, permitindo aos usuários explorar sinopses, detalhes técnicos e assistir a trailers.
+O DemoFlix é uma aplicação Fullstack desenvolvida especificamente para **DESKTOP** para consolidar competências técnicas em Java (Spring Boot), JavaScript, HTML e CSS. O sistema consome dados externos da API do TMDB para oferecer um catálogo imersivo de filmes e séries, permitindo aos usuários explorar sinopses, detalhes técnicos e assistir a trailers.
 
 *Principais Funcionalidades:*
 
