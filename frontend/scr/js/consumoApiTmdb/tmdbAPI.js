@@ -1,4 +1,4 @@
-const url = "https://demoflix-api.onrender.com/";
+const url = "https://demoflix-api.onrender.com";
 
 export async function carregarPupulares(tipo, inicio, fim) {
   const url = tipo === "filme"
