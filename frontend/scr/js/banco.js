@@ -1,4 +1,5 @@
-const url = "https://demoflix-api.onrender.com/";
+//const url = "https://demoflix-api.onrender.com/";
+const url = "http://localhost:8080/";
 
 
 
@@ -14,9 +15,7 @@ export async function login(email, senha) {
                 senha: senha
             })
         })
-
         response = await request.json();
-
         return response;
     } catch {
         return "Houve um erro com servidor!";
@@ -39,6 +38,7 @@ export async function criarConta(nome, email, senha) {
         })
 
         response = await request.json();
+     
         return response;
     } catch {
         return "Houve um erro com servidor!";
@@ -67,6 +67,7 @@ export async function favoritos(id) {
     try {
         request = await fetch(`${url}favorito/${id}`);
         response = await request.json();
+    
         return response;
     } catch {
         return "Houve um erro com servidor!";

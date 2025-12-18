@@ -10,4 +10,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     void deleteByEmail(String email);
 
     Optional<Usuario> findByEmailAndSenha(String email, String senha);
+
+    Boolean existsByEmail(String email);
 }

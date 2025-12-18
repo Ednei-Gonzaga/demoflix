@@ -76,33 +76,42 @@ async function efetuarLogin() {
     const inputEmail = document.querySelector("#input_email_login").value;
     const inputSenha = document.querySelector("#input_senha_login").value;
 
-    const response = await login(inputEmail, inputSenha);
+    let response = ""
 
-    console.log(response)
+
     if (inputEmail == "" || inputSenha == "") {
 
         exibirMensagem('erro', "PorFavor preencha todos os campos!");
 
-    } else if (response.login) {
-
-        exibirMensagem("", response.situacao);
-
-        usuarioLogado.id = response.usuario[0].id;
-        usuarioLogado.nome = response.usuario[0].nome;
-        usuarioLogado.email = response.usuario[0].email;
-        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
-
-
-        resetTimeount = setTimeout(() => {
-            window.location.href = "/scr/pages/app.html"
-        }, 2500)
-        document.querySelector("#input_email_login").value = "";
-
-
     } else {
-        exibirMensagem("erro", response.situacao);
-    }
+        response = await login(inputEmail, inputSenha);
 
+        if (response.situacao) {
+
+            exibirMensagem("", response.mensagem);
+
+            usuarioLogado.id = response.usuario.id;
+            usuarioLogado.nome = response.usuario.nome;
+            usuarioLogado.email = response.usuario.email;
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+
+            document.querySelector("#input_email_login").value = "";
+            
+            resetTimeount = setTimeout(() => {
+                window.location.href = "/scr/pages/app.html"
+            }, 2500)
+
+        } else {
+            switch (response.length) {
+                case 1:
+                    exibirMensagem("erro", response[0].mensagem);
+                    break
+                case 2:
+                    exibirMensagem("erro", "Email e Senha devem estar escritos corretamente!");
+                    break
+            }
+        }
+    }
     document.querySelector("#input_senha_login").value = "";
 }
 
@@ -129,9 +138,9 @@ async function cadastro() {
 
         response = await criarConta(inputNome, inputEmail, inputSenha);
 
-        if (response.login) {
+        if (response.situacao) {
 
-            exibirMensagem("", response.situacao);
+            exibirMensagem("", response.mensagem);
             resetTimeount = setTimeout(() => {
                 divLogin.classList.remove("animacao_menssagem");
                 void divLogin.offsetWidth;
@@ -141,8 +150,10 @@ async function cadastro() {
             }, 1500)
 
         } else {
-
-            exibirMensagem("erro", response.situacao);
+            response.forEach(element => {
+                
+                exibirMensagem("erro", `${element.mensagem}`);
+            });
 
         }
     }

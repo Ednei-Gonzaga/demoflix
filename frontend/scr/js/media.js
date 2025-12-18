@@ -265,7 +265,6 @@ function atualizarInfoMidia(detalhes, tipo) {
         : `${detalhes.release_date} • Filme`;
     imgInfo.src = urlImage + detalhes.poster_path;
     textoSinopse.textContent = detalhes.overview || "Sem sinopse disponível";
-    console.log(detalhes)
     avaliacao.innerHTML = `<img src="/public/estrela.png" alt=""> ${detalhes.vote_average.toFixed(1)}`;
 }
 
@@ -326,7 +325,7 @@ export async function abrirTrailer(id, tipo) {
     const { detalhes, elenco, videos } = await buscarDetalhesMidia(id, tipo);
 
     await atualizarInfoMidia(detalhes, tipo);
-    await configurarBotaoFavorito(detalhes, tipo, videos, favoritosUsuario);
+    await configurarBotaoFavorito(detalhes, tipo, videos, favoritosUsuario.content);
     await renderizarElenco(elenco);
     await configurarTrailer(videos);
 

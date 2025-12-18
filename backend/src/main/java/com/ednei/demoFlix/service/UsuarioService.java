@@ -1,12 +1,13 @@
 package com.ednei.demoFlix.service;
 
+import com.ednei.demoFlix.DTO.DetalheUsuarioDTO;
+import com.ednei.demoFlix.infra.exception.AcessoNegadoException;
+import com.ednei.demoFlix.infra.exception.RecursoNaoEncontradoException;
+import com.ednei.demoFlix.infra.exception.RegraDeNegocioException;
 import com.ednei.demoFlix.model.Usuario;
 import com.ednei.demoFlix.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Optional;
 
@@ -15,25 +16,40 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
-   // @Autowired
-   // FavoritoService favoritoService;
-
-    public Usuario salvarUsuario(Usuario usuario){
-        return repository.save(usuario);
+    public Usuario salvarUsuario(Usuario usuario) {
+        if (repository.existsByEmail(usuario.getEmail())) {
+            throw new RegraDeNegocioException("O email " + usuario.getEmail() + " já está em uso.");
+        } else {
+            return repository.save(usuario);
+        }
     }
 
-    public Optional<Usuario> buscaLogin(String email, String senha){
-        Optional<Usuario> usuario  = repository.findByEmailAndSenha(email, senha);
-        return usuario;
+    public DetalheUsuarioDTO buscaLogin(String email, String senha) {
+        Optional<Usuario> usuario = repository.findByEmailAndSenha(email, senha);
+        if (usuario.isPresent()) {
+            var user =  new DetalheUsuarioDTO(usuario.get());
+            return user;
+        } else {
+            throw  new AcessoNegadoException("Email ou Senha estão incorretos!") ;
+        }
     }
 
-    public void deletarUsuario(Long id){
-       // favoritoService.deletarFavoritoPorIdUsuario(id);
-        repository.deleteById(id);
+    public void deletarUsuario(Long id) {
+        var usuario = repository.findById(id);
+
+        if(usuario.isPresent()){
+          repository.deleteById(id);
+        }else{
+            throw new RecursoNaoEncontradoException("Usuario não encontrado!");
+        }
     }
 
-    public Usuario buscarPorId(Long id){
-        Usuario usuario = repository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));;
-        return  usuario;
+    public Usuario buscarPorId(Long id) {
+        var usuario = repository.findById(id);
+        if(usuario.isPresent()){
+        return usuario.get();
+        }else {
+            throw new RecursoNaoEncontradoException("Usuario não encontrado!!");
+        }
     }
 }

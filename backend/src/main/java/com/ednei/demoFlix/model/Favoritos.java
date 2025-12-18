@@ -1,13 +1,16 @@
 package com.ednei.demoFlix.model;
 
 import com.ednei.demoFlix.DTO.FavoritoDTO;
-import com.ednei.demoFlix.service.UsuarioService;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Favoritos {
 
     @Id
@@ -28,56 +31,12 @@ public class Favoritos {
     @ManyToOne
     private Usuario usuario;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public String getTrailer() {
-        return trailer;
-    }
-
-    public Long getIdTmdb() {
-        return idTmdb;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
+    public Favoritos(FavoritoDTO favoritoDTO, Usuario usuario) {
+        this.titulo = favoritoDTO.titulo();
+        this.tipo = favoritoDTO.tipo();
+        this.imagem = favoritoDTO.imagem();
+        this.trailer = favoritoDTO.trailer();
+        this.idTmdb = favoritoDTO.idTmdb();
         this.usuario = usuario;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
-    public void setTrailer(String trailer) {
-        this.trailer = trailer;
-    }
-
-    public void setIdTmdb(Long idTmdb) {
-        this.idTmdb = idTmdb;
     }
 }

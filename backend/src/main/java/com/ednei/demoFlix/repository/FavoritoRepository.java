@@ -3,6 +3,8 @@ package com.ednei.demoFlix.repository;
 import com.ednei.demoFlix.model.Favoritos;
 import com.ednei.demoFlix.model.Usuario;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +19,9 @@ public interface FavoritoRepository extends JpaRepository<Favoritos, Long> {
     void deletarFavorito(String tipoFavorito,Long idTmdb, Long idUsuario);
 
 
-    List<Favoritos> findAllByUsuarioId(Long idUsuario);
+    Page<Favoritos> findAllByUsuarioId(Long idUsuario, Pageable pageable);
+
+    Boolean existsByUsuarioIdAndIdTmdb(Long id, Long idTmdb);
 
 
 

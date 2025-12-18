@@ -74,7 +74,7 @@ export async function carregarCards() {
     divCadsFilmes.textContent = "";
     divCadsSeries.textContent = "";
 
-    favoritoDoUsuario.forEach(elemento => {
+    favoritoDoUsuario.content.forEach(elemento => {
         if (elemento.tipo == "Filme") {
             criarCadsFavorito(elemento.titulo, elemento.imagem, divCadsFilmes, elemento.idTmdb, elemento.tipo);
         } else if (elemento.tipo == "Série") {

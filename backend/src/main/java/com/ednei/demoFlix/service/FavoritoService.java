@@ -1,15 +1,15 @@
 package com.ednei.demoFlix.service;
 
 import com.ednei.demoFlix.DTO.FavoritoDTO;
+import com.ednei.demoFlix.infra.exception.RecursoNaoEncontradoException;
+import com.ednei.demoFlix.infra.exception.RegraDeNegocioException;
 import com.ednei.demoFlix.model.Favoritos;
 import com.ednei.demoFlix.model.Usuario;
 import com.ednei.demoFlix.repository.FavoritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class FavoritoService {
@@ -23,19 +23,12 @@ public class FavoritoService {
     public Favoritos salvarFavorito(FavoritoDTO favoritoDTO){
         Usuario usuario = usuarioService.buscarPorId(favoritoDTO.usuario());
 
-        System.out.println(usuario.getNome());
-
-        Favoritos favorito = new Favoritos();
-        favorito.setTitulo(favoritoDTO.titulo());
-        favorito.setTipo(favoritoDTO.tipo());
-        favorito.setImagem(favoritoDTO.imagem());
-        favorito.setTrailer(favoritoDTO.trailer());
-        favorito.setIdTmdb(favoritoDTO.idTmdb());
-        favorito.setUsuario(usuario);
-
-        System.out.println(favorito.getUsuario());
-
-        return repository.save(favorito);
+        if(repository.existsByUsuarioIdAndIdTmdb(usuario.getId(), favoritoDTO.idTmdb())){
+            throw new RegraDeNegocioException("Favorito já adicionado!");
+        }else{
+            Favoritos favorito = new Favoritos(favoritoDTO, usuario);
+            return repository.save(favorito);
+        }
     }
 
     public void deletarFavorito(String tipo, Long tmdbId, Long id){
@@ -44,16 +37,18 @@ public class FavoritoService {
 
 
 
-    public List<FavoritoDTO> buscarFavoritos(Long idUsuario){
-        List<FavoritoDTO> favoritoDTO = repository.findAllByUsuarioId(idUsuario).stream()
-                .map(f -> new FavoritoDTO(f.getTipo(), f.getIdTmdb(), f.getTitulo(), f.getImagem(), f.getTrailer(), f.getUsuario().getId()))
-                .collect(Collectors.toList());
+    public Page<FavoritoDTO> buscarFavoritos(Long idUsuario, Pageable pageable){
 
-        return favoritoDTO;
+        var favorito = repository.findAllByUsuarioId(idUsuario, pageable)
+                .map(FavoritoDTO::new);
+        //if(favorito.hasContent()){
+
+        return favorito;
+        //}else{
+        //    throw new RecursoNaoEncontradoException("Favorito não encontrado!");
+        //}
+
     }
 
-    private List<Favoritos> buscar(Long idUsuario){
-        List<Favoritos> favoritos = repository.findAllByUsuarioId(idUsuario);
-        return favoritos;
-    }
+
 }

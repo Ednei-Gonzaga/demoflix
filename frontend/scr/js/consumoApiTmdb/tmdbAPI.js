@@ -1,4 +1,4 @@
-const urlBack = "https://demoflix-api.onrender.com"
+const urlBack = "http://localhost:8080"
 
 export async function carregarPupulares(tipo, inicio, fim) {
   const url = tipo === "filme"
