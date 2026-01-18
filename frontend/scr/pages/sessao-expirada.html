@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sessão Expirada - Demoflix</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #141414; 
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background-color: rgba(0,0,0,0.75);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        h1 { color: #09e509; margin-bottom: 20px; }
+        p { font-size: 1.2rem; margin-bottom: 30px; color: #ccc; }
+        .btn-login {
+            background-color: #09e509;
+            color: black;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        .btn-login:hover { background-color: #b20710; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ops! Sua sessão expirou</h1>
+        <p>Por motivos de segurança, seu login foi desconectado da Demoflix.</p>
+        <a href="../../index.html" class="btn-login" id="btn-voltar">Fazer Login Novamente</a>
+    </div>
+
+    <script>
+        localStorage.removeItem("usuarioLogado");
+    </script>
+</body>
+</html>

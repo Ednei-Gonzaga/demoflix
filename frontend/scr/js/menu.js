@@ -2,6 +2,7 @@ import { containerFavorito, carregarCards } from "./favorito.js";
 import { linksPaginacao } from "./home.js";
 import { ocultarContainers, containerPesquisa, divLinks, divInputPesquisa } from "./pesquisa.js";
 import { deletar} from "./banco.js";
+import { getUsuario } from "./sevice/tokenService.js";
 
 
 
@@ -22,7 +23,7 @@ const nomeUsuario = document.querySelector("#nome_usuario");
 const emailUsuario = document.querySelector("#gmail_usuario");
 
 
-export const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+export const usuarioLogado = getUsuario(JSON.parse(localStorage.getItem("usuarioLogado")));
 
 
 
@@ -30,7 +31,7 @@ btnAbrirMenu.addEventListener("click", () => {
     nomeUsuario.textContent = "";
     emailUsuario.textContent = "";
     nomeUsuario.textContent = usuarioLogado.nome;
-    emailUsuario.textContent = usuarioLogado.email;
+    emailUsuario.textContent = usuarioLogado.sub;
     resetarAnimacaoMenu();
     menu.style.display = "flex";
 })
@@ -38,7 +39,6 @@ btnAbrirMenu.addEventListener("click", () => {
 btnFecharMenu.addEventListener("click", () => {
     animacaoMenuDesaparecer();
     setTimeout(() => {
-
         menu.style.display = "none";
     }, 700)
 })

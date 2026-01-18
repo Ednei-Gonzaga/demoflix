@@ -1,11 +1,5 @@
 import { login, criarConta } from "./banco.js";
 
-export const usuarioLogado = {
-    id: null,
-    nome: null,
-    email: null
-};
-
 const mensagem = document.querySelector("#mensagem_situacao_login");
 const divMensagem = document.querySelector(".mensagem_situacao");
 
@@ -45,10 +39,10 @@ btnAbrirLogin.addEventListener("click", () => {
 })
 
 
-function exibirMensagem(tipo, texto) {
+function exibirMensagem(situacao, texto) {
     clearTimeout(resetTimeount);
 
-    if (tipo == "erro") {
+    if (!situacao) {
         mensagem.textContent = "";
         mensagem.innerHTML = '<img src="/public/excluir.png" alt="" width="32">' + " " + texto;
         divMensagem.style.background = "#FF1C0C";
@@ -81,19 +75,20 @@ async function efetuarLogin() {
 
     if (inputEmail == "" || inputSenha == "") {
 
-        exibirMensagem('erro', "PorFavor preencha todos os campos!");
+        exibirMensagem(false, "PorFavor preencha todos os campos!");
+
+    }else if(inputSenha.length < 8){
+
+        exibirMensagem(false, "Senha dever ter minimo 8 e maximo 16 digitos!");
 
     } else {
         response = await login(inputEmail, inputSenha);
 
         if (response.situacao) {
 
-            exibirMensagem("", response.mensagem);
+            exibirMensagem(true, response.mensagem);
 
-            usuarioLogado.id = response.usuario.id;
-            usuarioLogado.nome = response.usuario.nome;
-            usuarioLogado.email = response.usuario.email;
-            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+            localStorage.setItem("usuarioLogado", JSON.stringify(response.token));
 
             document.querySelector("#input_email_login").value = "";
             
@@ -102,12 +97,16 @@ async function efetuarLogin() {
             }, 2500)
 
         } else {
+            if(!response.situacao){
+                exibirMensagem(false, "Email ou senha Incorretos!");
+            }
+
             switch (response.length) {
                 case 1:
-                    exibirMensagem("erro", response[0].mensagem);
+                    exibirMensagem(false, response[0].mensagem);
                     break
                 case 2:
-                    exibirMensagem("erro", "Email e Senha devem estar escritos corretamente!");
+                    exibirMensagem(false, "Email e Senha devem estar escritos corretamente!");
                     break
             }
         }
@@ -126,21 +125,21 @@ async function cadastro() {
 
     if (inputEmail == "" || inputNome == "" || inputSenha == "" || inputConfirmar == "") {
 
-        exibirMensagem('erro', "PorFavor preencha todos os campos!");
+        exibirMensagem(false, "PorFavor preencha todos os campos!");
 
     } else if (inputSenha != inputConfirmar) {
 
-        exibirMensagem("erro", "A senha tem que ser igual nos dois campos!");
+        exibirMensagem(false, "A senha tem que ser igual nos dois campos!");
 
     } else if (inputSenha.length < 8) {
-        exibirMensagem("erro", "Minimo da senha e 8 Digitos!");
+        exibirMensagem(false, "Minimo da senha e 8 Digitos!");
     } else {
 
         response = await criarConta(inputNome, inputEmail, inputSenha);
 
         if (response.situacao) {
 
-            exibirMensagem("", response.mensagem);
+            exibirMensagem(true, response.mensagem);
             resetTimeount = setTimeout(() => {
                 divLogin.classList.remove("animacao_menssagem");
                 void divLogin.offsetWidth;
@@ -152,7 +151,7 @@ async function cadastro() {
         } else {
             response.forEach(element => {
                 
-                exibirMensagem("erro", `${element.mensagem}`);
+                exibirMensagem(false, `${element.mensagem}`);
             });
 
         }

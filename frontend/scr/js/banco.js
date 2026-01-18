@@ -1,12 +1,12 @@
+import { token } from "./sevice/tokenService.js";
+
 const url = "https://demoflix-api.onrender.com/";
-
-
-
 
 export async function login(email, senha) {
     let request;
     let response;
     try {
+
         request = await fetch(`${url}usuario/login`, {
             method: "POST",
             headers: { "content-type": "application/json" },
@@ -16,7 +16,11 @@ export async function login(email, senha) {
             })
         })
         response = await request.json();
+
+        console.log(response);
         return response;
+
+
     } catch {
         return "Houve um erro com servidor!";
     }
@@ -38,7 +42,7 @@ export async function criarConta(nome, email, senha) {
         })
 
         response = await request.json();
-     
+
         return response;
     } catch {
         return "Houve um erro com servidor!";
@@ -51,7 +55,7 @@ export async function deletar(id) {
     try {
         request = await fetch(`${url}usuario/delete`, {
             method: "DELETE",
-            headers: { "content-type": "application/json" },
+            headers: { "content-type": "application/json", "Authorization": `Bearer ${token}` },
             body: JSON.stringify({
                 id: id
             })
@@ -65,9 +69,12 @@ export async function favoritos(id) {
     let request;
     let response;
     try {
-        request = await fetch(`${url}favorito/${id}`);
+        request = await fetch(`${url}favorito/${id}`, {
+            method: "GET",
+            headers: { "Authorization": `Bearer ${token}` }
+        });
         response = await request.json();
-    
+
         return response;
     } catch {
         return "Houve um erro com servidor!";
@@ -80,7 +87,7 @@ export async function adicionarFavoritos(titulo, tipo, imagem, trailer, idTmdb, 
     try {
         request = await fetch(`${url}favorito/save`, {
             method: "POST",
-            headers: { "content-type": "application/json" },
+            headers: { "content-type": "application/json","Authorization": `Bearer ${token}`},
             body: JSON.stringify({
                 titulo: titulo,
                 tipo: tipo,
@@ -103,7 +110,7 @@ export async function deletarFavoritos(tipo, idTmdb, usuario) {
     try {
         request = await fetch(`${url}favorito/delete`, {
             method: "DELETE",
-            headers: { "content-type": "application/json" },
+            headers: { "content-type": "application/json","Authorization": `Bearer ${token}`},
             body: JSON.stringify({
                 tipo: tipo,
                 idTmdb: idTmdb,
