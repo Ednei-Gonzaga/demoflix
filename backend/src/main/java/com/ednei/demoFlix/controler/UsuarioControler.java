@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -22,27 +23,31 @@ public class UsuarioControler {
     @Autowired
     UsuarioService service;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     @PostMapping("/cadastro")
     @Transactional
     public ResponseEntity cadastrarUsuario(@RequestBody @Valid UsuarioDTO usuario) {
-        Usuario user = service.salvarUsuario(new Usuario(usuario));
+        var  usuarioComSenhaBcrypt = new UsuarioDTO(usuario.id(), usuario.nome(), usuario.email(), bCryptPasswordEncoder.encode(usuario.senha()));
+        Usuario user = service.salvarUsuario(new Usuario(usuarioComSenhaBcrypt));
         return ResponseEntity.status(HttpStatus.OK).body(Map.of("situacao", true, "mensagem", "Criado com Sucesso!"));
     }
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     @Transactional
     public ResponseEntity login(@RequestBody @Valid LoginUsuarioDTO usuario) {
         var user = service.buscaLogin(usuario.email(), usuario.senha());
         return ResponseEntity.status(HttpStatus.OK).body(Map.of("situacao", true,
                 "mensagem", "Logado com sucesso!", "usuario", user));
-    }
+    }*/
 
     @DeleteMapping("/delete")
     @Transactional
     public ResponseEntity deletarUsuario(@RequestBody @Valid DeleteUsuarioDTO usuario) {
 
             service.deletarUsuario(usuario.id());
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(Map.of("situacao", true, "mensagem", "Deletado com sucesso!"));
     }
 }

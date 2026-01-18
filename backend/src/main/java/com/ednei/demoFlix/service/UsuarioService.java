@@ -7,6 +7,7 @@ import com.ednei.demoFlix.infra.exception.RegraDeNegocioException;
 import com.ednei.demoFlix.model.Usuario;
 import com.ednei.demoFlix.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -48,6 +49,15 @@ public class UsuarioService {
         var usuario = repository.findById(id);
         if(usuario.isPresent()){
         return usuario.get();
+        }else {
+            throw new RecursoNaoEncontradoException("Usuario não encontrado!!");
+        }
+    }
+
+    public UserDetails buscarPorEmail(String email) {
+        var usuario = repository.findByEmail(email);
+        if(usuario.isPresent()){
+            return usuario.get();
         }else {
             throw new RecursoNaoEncontradoException("Usuario não encontrado!!");
         }
