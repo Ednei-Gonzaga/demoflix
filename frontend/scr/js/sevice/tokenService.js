@@ -19,7 +19,7 @@ export function getUsuario(token) {
 }
 
 export function tokenExpirado(token) {
-    if (!token) {
+    if (token == null) {
         return true;
     }
 
