@@ -16,6 +16,7 @@ const btnAbrirLogin = document.querySelector("#btn_abrir_div_login");
 
 btnLogin.addEventListener("click", () => {
     efetuarLogin();
+    console.log("Clicou em mim")
 })
 
 btnCriar.addEventListener("click", () => {
@@ -93,7 +94,7 @@ async function efetuarLogin() {
             document.querySelector("#input_email_login").value = "";
             
             resetTimeount = setTimeout(() => {
-                window.location.href = "/scr/pages/app.html"
+                window.location.href = "/scr/pages/app.html";
             }, 2500)
 
         } else {

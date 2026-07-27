@@ -277,6 +277,7 @@ function configurarBotaoFavorito(detalhes, tipo, videos, favoritosUsuario) {
     divBtnFavoritar.textContent = '';
     divBtnFavoritar.appendChild(button);
 
+    
     const jaFavoritado = favoritosUsuario.some(f => f.idTmdb === detalhes.id);
     button.style.background = jaFavoritado ? "red" : "none";
 
@@ -325,6 +326,7 @@ export async function abrirTrailer(id, tipo) {
     const { detalhes, elenco, videos } = await buscarDetalhesMidia(id, tipo);
 
     await atualizarInfoMidia(detalhes, tipo);
+    console.log(favoritosUsuario)
     await configurarBotaoFavorito(detalhes, tipo, videos, favoritosUsuario.content);
     await renderizarElenco(elenco);
     await configurarTrailer(videos);

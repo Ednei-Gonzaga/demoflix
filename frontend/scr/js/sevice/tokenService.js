@@ -1,5 +1,10 @@
 const dadoSalvo = localStorage.getItem("usuarioLogado");
-export const token = JSON.parse(dadoSalvo);
+
+export const token = () => {
+    if (dadoSalvo != null && dadoSalvo != undefined) {
+        return JSON.parse(dadoSalvo)
+    }
+};
 
 export function getUsuario(token) {
     if (!token) {
@@ -19,7 +24,7 @@ export function getUsuario(token) {
 }
 
 export function tokenExpirado(token) {
-    if (token == null) {
+    if (!token) {
         return true;
     }
 
@@ -29,6 +34,6 @@ export function tokenExpirado(token) {
         return Math.floor(new Date().getTime() / 1000) >= tokenPayload?.sub;
 
     } catch (error) {
-         return true;
+        return true;
     }
 }
