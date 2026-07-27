@@ -55,12 +55,12 @@ demoflix/
 ---
 ## 🚀 Demonstração ao Vivo e Performance
 
-O projeto está online! O pipeline de deploy utiliza o **Netlify** para o frontend e o **Render** para a API backend..
+O projeto está online! O  deploy utiliza o **Netlify** para o frontend e o **Render** para a API backend..
 
 🔗 **Acesse agora:** [**DemoFlix Live**](https://demoflix3.netlify.app)
 
 > **⚠️ Observação:**
-> Como a aplicação está hospedada em planos **gratuitos**, o servidor pode entrar em modo de hibernação. Portanto, o primeiro acesso pode levar alguns segundos a mais para acordar o **backend** ou aprensentar lentidão. Agradeço a compreensão!
+> Como a aplicação está hospedada em planos **gratuitos**, o servidor pode entrar em modo de hibernação ou em algum momento não estarem funcionando. Portanto, o primeiro acesso pode levar alguns segundos a mais para acordar o **backend** ou aprensentar lentidão no frontEnd. Agradeço a compreensão!
 
 ---
 
