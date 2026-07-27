@@ -9,7 +9,6 @@ public record LoginUsuarioDTO(
         String email,
 
         @NotBlank
-        @Pattern(regexp = "\\d{8,16}", message = "Deve ser no minimo 8 e máximo 16")
         String senha
 ) {
 }
