@@ -35,13 +35,6 @@ public class UsuarioControler {
         return ResponseEntity.status(HttpStatus.OK).body(Map.of("situacao", true, "mensagem", "Criado com Sucesso!"));
     }
 
-    /*@PostMapping("/login")
-    @Transactional
-    public ResponseEntity login(@RequestBody @Valid LoginUsuarioDTO usuario) {
-        var user = service.buscaLogin(usuario.email(), usuario.senha());
-        return ResponseEntity.status(HttpStatus.OK).body(Map.of("situacao", true,
-                "mensagem", "Logado com sucesso!", "usuario", user));
-    }*/
 
     @DeleteMapping("/delete")
     @Transactional
