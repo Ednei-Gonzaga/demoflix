@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                 .cors(cors -> cors.configure(http))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("usuario/login").permitAll();
-                    req.requestMatchers("usuario/cadastro").permitAll();
+                    req.requestMatchers("usuario/cadastro", "/uptimerobot/bot/monitoramento").permitAll();
                     req.anyRequest().authenticated();
                 })
                 .exceptionHandling(ex -> ex
