@@ -41,8 +41,9 @@ export async function criarConta(nome, email, senha) {
                 senha: senha
             })
         })
-
+        
         response = await request.json();
+        console.log(response)
 
         return response;
     } catch {

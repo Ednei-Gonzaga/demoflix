@@ -79,6 +79,7 @@ async function efetuarLogin() {
         exibirMensagem(false, "PorFavor preencha todos os campos!");
 
     }else if(inputSenha.length < 8){
+        alert(inputSenha.length)
 
         exibirMensagem(false, "Senha dever ter minimo 8 e maximo 16 digitos!");
 
