@@ -1,0 +1,15 @@
+<div
+    class="bg_color_card mx-auto flex flex-col justify-center min-h-80 max-w-md w-full pl-8 pr-8 pb-10 pt-10  rounded-2xl">
+    <app-title-cards-page-login-component titleCard="Verificar Código"
+        descriptionCard="Enviamos um codigo de 6 digitos para seu email"></app-title-cards-page-login-component>
+
+    <app-input-login-component-ts [receiveDataInput]="dataInputLogin"></app-input-login-component-ts>
+
+
+
+    <div class="mt-5 text-center flex flex-col gap-2 w-full">
+        <app-button-login-submit-component titleButton="Verificar e Continuar"></app-button-login-submit-component>
+        <app-login-auth-link-component textButton="Cancelar e voltar para login"></app-login-auth-link-component>
+    </div>
+
+</div>

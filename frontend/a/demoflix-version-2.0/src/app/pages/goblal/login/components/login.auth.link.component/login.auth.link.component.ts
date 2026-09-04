@@ -7,7 +7,8 @@ import { Component, Input } from '@angular/core';
   styleUrl: './login.auth.link.component.css',
 })
 export class LoginAuthLinkComponent {
-  @Input() isCardCreatedAccount: boolean = false;
+  @Input() questionText: string = "";
+  @Input() textButton: string = "";
 
 
 }

@@ -1,15 +1,12 @@
 <div class="bg_color_card grid justify-center min-h-80 max-w-120 pl-5 pr-2 pb-10 pt-10  rounded-2xl">
-    <div class="w-full text-center grid gap-2 mb-5">
-        <h1 class="text-white text-3xl font-bold">Login</h1>
-        <p class="text-gray-500 text-md">Entre acesso a trailers e informações de filmes e séries</p>
-    </div>
+    <app-title-cards-page-login-component titleCard="Login" descriptionCard="Entre acesso a trailers e informações de filmes e séries"></app-title-cards-page-login-component>
     <app-input-login-component-ts></app-input-login-component-ts>
 
     <app-input-login-component-ts></app-input-login-component-ts>
 
     <div class="mt-5 text-center grid gap-2">
         <app-button-login-submit-component titleButton="Entrar"></app-button-login-submit-component>
-        <app-login-auth-link-component [isCardCreatedAccount]="false"></app-login-auth-link-component>
+        <app-login-auth-link-component ></app-login-auth-link-component>
     </div>
 
 </div>
