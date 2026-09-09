@@ -28,7 +28,7 @@ public class TradadorErros {
     public ResponseEntity tratarRegraNegocio(RegraDeNegocioException ex) {
         List<DadosErroPadrao> retornoErro = new ArrayList<>();
         retornoErro.add(new DadosErroPadrao(ex.getMessage()));
-        return ResponseEntity.status(HttpStatus.CONFLICT)
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(retornoErro);
     }
 

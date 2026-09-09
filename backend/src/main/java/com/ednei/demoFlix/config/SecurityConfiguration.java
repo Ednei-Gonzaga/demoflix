@@ -39,6 +39,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("usuario/login").permitAll();
                     req.requestMatchers("usuario/cadastro", "/uptimerobot/bot/monitoramento").permitAll();
+                    req.requestMatchers("/usuario/codigo-verificacao", "/usuario/senha-update").permitAll();
                     req.anyRequest().authenticated();
                 })
                 .exceptionHandling(ex -> ex

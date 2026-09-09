@@ -34,11 +34,18 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private List<Favoritos> favoritos;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<CodigoVerificacao> codigoVerificacao;
+
 
     public Usuario(UsuarioDTO usuario) {
         this.email = usuario.email();
         this.nome = usuario.nome();
         this.senha = usuario.senha();
+    }
+
+    public Usuario(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -78,5 +85,9 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+    }
+
+    public void atualizarSenha(String senha) {
+        this.senha = senha;
     }
 }
