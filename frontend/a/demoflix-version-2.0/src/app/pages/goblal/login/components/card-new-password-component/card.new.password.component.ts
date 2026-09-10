@@ -4,6 +4,7 @@ import { InputLoginComponentTs } from '../input-login-component/input.login.comp
 import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component';
 import { TitleCardsPageLoginComponent } from '../title-cards-page-login-component/title.cards.page.login.component';
 import { InputLoginData } from '../../login-date-model';
+import { iconPassword } from '../../../../../../environments/environments-icons';
 
 @Component({
   selector: 'app-card-new-password-component',
@@ -17,13 +18,13 @@ export class CardNewPasswordComponent {
       title: "nova senha",
       placeholderText: "********",
       type: "password",
-      inconUrl: "https://api.iconify.design/material-symbols:lock.svg?color=%23e0e0e0"
+      inconUrl: iconPassword
     },
     {
       title: "Confirme nova senha",
       placeholderText: "*******",
       type: "password",
-      inconUrl: "https://api.iconify.design/material-symbols:lock.svg?color=%23e0e0e0"
+      inconUrl: iconPassword
     }
     ]
 

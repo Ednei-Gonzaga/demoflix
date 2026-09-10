@@ -1,0 +1,7 @@
+<div class="flex justify-center items-center p-3 gap-2 min-h-24 min-w-60 max-w-80 w-full rounded-2xl hover:scale-102 transition-all duration-100"  [ngClass]="isMessageError == true ? 'style_error': 'style_sucess'">
+    <img [src]="isMessageError == true ? errorIcon : sucessIcon " alt="Error" class="size-12 ">
+    <div class="flex flex-col flex-1 w-full gap-2">
+        <h2 class="text-md sm:text-lg text-white font-semibold">{{titleSituation}}</h2>
+        <p class="text-white/60 text-sm sm:text-md">{{messageDescription}}</p>
+    </div>
+</div>

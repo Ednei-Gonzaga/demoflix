@@ -15,7 +15,8 @@ export class InputLoginComponentTs {
       placeholderText: "Digite seu nome",
       inconUrl: "https://cdn-icons-png.flaticon.com/512/847/847969.png"
     }
-
+  @Input() maxLength: string = "9999999999";  
+  
 
 
 }

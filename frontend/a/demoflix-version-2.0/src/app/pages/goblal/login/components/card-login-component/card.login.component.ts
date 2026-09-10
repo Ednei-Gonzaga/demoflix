@@ -3,6 +3,8 @@ import { InputLoginComponentTs } from '../input-login-component/input.login.comp
 import { ButtonLoginSubmitComponent } from '../button-login-submit-component/button.login.submit.component.js';
 import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component.js';
 import { TitleCardsPageLoginComponent } from '../title-cards-page-login-component/title.cards.page.login.component.js';
+import { InputLoginData } from '../../login-date-model.js';
+import { iconEmail, iconPassword } from '../../../../../../environments/environments-icons.js';
 
 @Component({
   selector: 'app-card-login-component',
@@ -11,5 +13,22 @@ import { TitleCardsPageLoginComponent } from '../title-cards-page-login-componen
   styleUrl: './card.login.component.css',
 })
 export class CardLoginComponent {
+
+  protected dataInputLogin: InputLoginData[] = [
+    {
+    title: "Endereço E-mail",
+    type: "email",
+    placeholderText: "Digite seu email cadastrado",
+    inconUrl: iconEmail
+    },
+
+    {
+    title: "Senha",
+    type: "password",
+    placeholderText: "Digite sua senha",
+    inconUrl: iconPassword
+    }
+  ];
+  
 
 }

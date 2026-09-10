@@ -3,6 +3,8 @@ import { ButtonLoginSubmitComponent } from '../button-login-submit-component/but
 import { InputLoginComponentTs } from '../input-login-component/input.login.component.ts';
 import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component';
 import { TitleCardsPageLoginComponent } from '../title-cards-page-login-component/title.cards.page.login.component';
+import { iconEmail, iconPassword, iconUser } from '../../../../../../environments/environments-icons';
+import { InputLoginData } from '../../login-date-model';
 
 @Component({
   selector: 'app-card-created-account-component',
@@ -12,5 +14,32 @@ import { TitleCardsPageLoginComponent } from '../title-cards-page-login-componen
 })
 export class CardCreatedAccountComponent {
 
+  protected dataInputLogin: InputLoginData[] = [
+    {
+      title: "Nome",
+      type: "text",
+      placeholderText: "Crie seu nome ou apelido",
+      inconUrl: iconUser
+    },
+    {
+      title: "Endereço E-mail",
+      type: "email",
+      placeholderText: "Crie seu email para login",
+      inconUrl: iconEmail
+    },
+
+    {
+      title: "Senha",
+      type: "password",
+      placeholderText: "Crie sua senha",
+      inconUrl: iconPassword
+    },
+    {
+      title: "Confirme Senha",
+      type: "password",
+      placeholderText: "Digite a mesma senha criada acima",
+      inconUrl: iconPassword
+    }
+  ];
 }
 

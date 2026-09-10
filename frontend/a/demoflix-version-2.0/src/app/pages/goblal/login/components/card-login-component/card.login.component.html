@@ -1,12 +1,17 @@
-<div class="bg_color_card grid justify-center min-h-80 max-w-120 pl-5 pr-2 pb-10 pt-10  rounded-2xl">
-    <app-title-cards-page-login-component titleCard="Login" descriptionCard="Entre acesso a trailers e informações de filmes e séries"></app-title-cards-page-login-component>
-    <app-input-login-component-ts></app-input-login-component-ts>
+<div
+    class="bg_color_card flex flex-col items-center justify-center min-h-80 max-w-120 pl-5 pr-5 pb-10 pt-10  rounded-2xl">
+    <app-title-cards-page-login-component titleCard="Login"
+        descriptionCard="Entre e acesso a trailers e informações de filmes e séries"></app-title-cards-page-login-component>
+    <div class=" w-full flex flex-col mx-auto gap-3">
+        @for (data of dataInputLogin; track $index) {
+             <app-input-login-component-ts [receiveDataInput]="data"></app-input-login-component-ts>
+        }
+    </div>
 
-    <app-input-login-component-ts></app-input-login-component-ts>
-
-    <div class="mt-5 text-center grid gap-2">
+    <div class="mt-5 text-center flex flex-col w-full mx-auto gap-2">
         <app-button-login-submit-component titleButton="Entrar"></app-button-login-submit-component>
-        <app-login-auth-link-component ></app-login-auth-link-component>
+        <app-login-auth-link-component textButton="Criar" questionText="Não tem conta?"></app-login-auth-link-component>
+        <app-login-auth-link-component textButton="Esqueci minha senha"></app-login-auth-link-component>
     </div>
 
 </div>
