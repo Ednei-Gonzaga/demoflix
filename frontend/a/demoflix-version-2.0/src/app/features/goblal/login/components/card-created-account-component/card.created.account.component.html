@@ -1,0 +1,27 @@
+<form [formGroup]="formCreatedLogin" (ngSubmit)="onSubmit()"
+animate.enter="animate__animated animate__fadeIn" animate.leave="animate__animated animate__fadeOut"
+    class="bg_color_card mx-auto flex flex-col justify-center min-h-80 max-w-120  pl-5 pr-5 pb-10 pt-10  rounded-2xl">
+    <app-title-cards-page-login-component titleCard="Crie sua Conta"
+        descriptionCard="Crie sua conta e tenha acesso a informações e trailer de filmes"></app-title-cards-page-login-component>
+
+    <div class="flex flex-col gap-2">
+        @for (data of dataInputLogin; track $index) {
+        @if ($index == 2) {
+        <div class="flex flex-col">
+            <app-input-login-component-ts [receiveDataInput]="data"></app-input-login-component-ts>
+            <p class="w-full max-w-100 mx-auto text-sm transition-all duration-100" [ngClass]="formCreatedLogin.get('password')?.valid ? 'text-green-400/80':'text-red-500/80'">Senha deve conter 8-16 digitos.</p>
+            <p class="w-full max-w-100 mx-auto text-sm transition-all duration-100" [ngClass]="formCreatedLogin.get('password')?.valid ? 'text-green-400/80':'text-red-500/80'">Senha deve ter uma letra maiuscula.</p>
+        </div>
+        }@else {
+        <app-input-login-component-ts [receiveDataInput]="data"></app-input-login-component-ts>
+        }
+        }
+    </div>
+
+    <div class="mt-5 text-center grid gap-2">
+        <app-button-login-submit-component titleButton="Criar conta" [isEnable]="formCreatedLogin.invalid"></app-button-login-submit-component>
+        <app-login-auth-link-component questionText="Já tem conta?" textButton="Login"
+            (clickEvent)="onClickLoginEvent()"></app-login-auth-link-component>
+    </div>
+
+</form>

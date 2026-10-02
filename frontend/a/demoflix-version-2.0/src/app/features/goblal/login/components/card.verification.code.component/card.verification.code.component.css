@@ -1,0 +1,12 @@
+.animation_appear{
+   animation: appear 1s ease-out;
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}
+

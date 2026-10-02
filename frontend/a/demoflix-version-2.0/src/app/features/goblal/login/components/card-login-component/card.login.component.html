@@ -1,0 +1,21 @@
+<form [formGroup]="formLogin"  (ngSubmit)="onSubmit()"
+ animate.enter="animate__animated animate__fadeIn" animate.leave="animate__animated animate__fadeOut"
+    class="bg_color_card mx-auto flex flex-col items-center justify-center min-h-80 max-w-120 pl-5 pr-5 pb-10 pt-10  rounded-2xl">
+    <app-title-cards-page-login-component titleCard="Login"
+        descriptionCard="Entre e acesso a trailers e informações de filmes e séries"></app-title-cards-page-login-component>
+    <div class=" w-full flex flex-col mx-auto gap-3">
+        @for (data of dataInputLogin; track $index) {
+        <app-input-login-component-ts [receiveDataInput]="data"></app-input-login-component-ts>
+        }
+    </div>
+
+    <div class="mt-5 text-center flex flex-col w-full mx-auto gap-2">
+        <app-button-login-submit-component titleButton="Entrar" [isEnable]="formLogin.invalid"></app-button-login-submit-component>
+        <app-login-auth-link-component textButton="Criar" questionText="Não tem conta?"
+            (clickEvent)="onClickCreateLoginEvent()"></app-login-auth-link-component>
+        <app-login-auth-link-component textButton="Esqueci minha senha"
+            (clickEvent)="onClickForgotPassword()"></app-login-auth-link-component>
+    </div>
+
+</form>
+

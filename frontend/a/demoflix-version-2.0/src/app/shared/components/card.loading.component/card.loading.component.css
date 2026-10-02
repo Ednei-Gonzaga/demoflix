@@ -1,0 +1,22 @@
+.background_card {
+    background: linear-gradient(90deg,
+            #0d1114 0%,
+            rgba(128, 229, 246, 0.08) 50%,
+            #0d1114 100%);
+    background-color: #0d1114;
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    animation: loading_background 2.5s infinite ease-in-out;
+    border: solid 1px #1A3840;
+}
+
+@keyframes loading_background {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+
+}

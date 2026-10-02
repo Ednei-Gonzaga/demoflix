@@ -1,0 +1,1 @@
+export const serveBackend: string = "http://localhost:8080/";

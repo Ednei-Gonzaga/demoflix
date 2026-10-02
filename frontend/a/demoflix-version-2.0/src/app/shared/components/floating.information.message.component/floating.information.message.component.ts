@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { iconError, iconSucess } from '../../../../environments/environments-icons';
 import { NgClass } from "../../../../../node_modules/@angular/common";
+import { FloatingInformationService } from './floating.information.service';
 
 @Component({
   selector: 'app-floating-information-message-component',
@@ -9,10 +10,8 @@ import { NgClass } from "../../../../../node_modules/@angular/common";
   styleUrl: './floating.information.message.component.css',
 })
 export class FloatingInformationMessageComponent {
-  @Input() messageDescription: string = "Title message";
-  @Input() titleSituation: string = "Description message"
-  @Input() isMessageError: boolean = true;
-  protected errorIcon: string = iconError;
+  protected floatingMessageService = inject(FloatingInformationService);
+ protected errorIcon: string = iconError;
   protected sucessIcon: string = iconSucess;
 
 

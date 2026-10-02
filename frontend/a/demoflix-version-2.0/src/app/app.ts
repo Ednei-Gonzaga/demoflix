@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PageLoginComponents } from './pages/goblal/login/page-login-components/page.login.components';
+import { PageLoginComponents } from './features/goblal/login/page-login-components/page.login.components';
+import { FloatingInformationMessageComponent } from "./shared/components/floating.information.message.component/floating.information.message.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PageLoginComponents],
+  imports: [RouterOutlet, PageLoginComponents, FloatingInformationMessageComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -1,0 +1,71 @@
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { InputLoginComponentTs } from '../input-login-component/input.login.component.ts.js';
+import { ButtonLoginSubmitComponent } from '../button-login-submit-component/button.login.submit.component.js';
+import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component.js';
+import { TitleCardsPageLoginComponent } from '../title-cards-page-login-component/title.cards.page.login.component.js';
+import { InputLoginData } from '../../login-date-model.js';
+import { iconEmail, iconPassword } from '../../../../../../environments/environments-icons.js';
+import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
+import { DataFormLogin } from '../../models/forms.page.login.model.js';
+import { FloatingInformationService } from '../../../../../shared/components/floating.information.message.component/floating.information.service.js';
+
+@Component({
+  selector: 'app-card-login-component',
+  imports: [ReactiveFormsModule, ButtonLoginSubmitComponent, InputLoginComponentTs, LoginAuthLinkComponent, TitleCardsPageLoginComponent, ɵInternalFormsSharedModule],
+  templateUrl: './card.login.component.html',
+  styleUrl: './card.login.component.css',
+})
+export class CardLoginComponent {
+
+  protected formLogin: FormGroup = new FormGroup({
+    email: new FormControl("", [Validators.email, Validators.required]),
+    password: new FormControl("", [Validators.required])
+  });
+
+  protected dataInputLogin: InputLoginData[] = [
+    {
+      title: "Endereço E-mail",
+      type: "email",
+      placeholderText: "Digite seu email cadastrado",
+      inconUrl: iconEmail,
+      formControl: this.formLogin.get('email') == null ? new FormControl('') : this.formLogin.get('email') as FormControl
+    },
+
+    {
+      title: "Senha",
+      type: "password",
+      placeholderText: "Digite sua senha",
+      inconUrl: iconPassword,
+      formControl: this.formLogin.get("password") == null ? new FormControl('') : this.formLogin.get("password") as FormControl
+    }
+  ];
+
+  @Output() clickForgotPasswordEvent = new EventEmitter<void>();
+
+  @Output() clickCreateLoginEvent = new EventEmitter<void>();
+
+  @Output() dataFormLogin = new EventEmitter<DataFormLogin>();
+
+  private floatingMessageService = inject(FloatingInformationService);
+
+
+  //Metodos
+
+  protected onSubmit(){
+    if(this.formLogin.invalid){
+      this.floatingMessageService.updateDataMessage("Campos Incorretos!", "EMAIL ou SENHA estão incorretos.", true)
+    }else{
+      this.dataFormLogin.emit(this.formLogin.value as DataFormLogin);
+    }
+  }
+
+  protected onClickForgotPassword() {
+    this.clickForgotPasswordEvent.emit();
+  }
+
+  protected onClickCreateLoginEvent() {
+    this.clickCreateLoginEvent.emit();
+  }
+
+
+}
