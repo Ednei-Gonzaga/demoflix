@@ -18,7 +18,7 @@ import { CardLoadingComponent } from "../../../../shared/components/card.loading
 })
 export class PageLoginComponents {
 
-  protected cardsVisibility: "login" | "createLogin" | "newPassword" | "recoverEmail" | "verificationCode" | "loadingCard" =  "login";
+  protected cardsVisibility: "login" | "createLogin" | "newPassword" | "recoverEmail" | "verificationCode" | "loadingCard" =  "recoverEmail";
 
   protected changeActiveCard(nameCard: "login" | "createLogin" | "newPassword" | "recoverEmail" | "verificationCode"  | "loadingCard"): void{
     this.cardsVisibility = nameCard;
