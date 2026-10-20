@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { PageLoadingService } from './service/page.loading.service';
 
 @Component({
   selector: 'app-card-loading-component',
@@ -7,7 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './card.loading.component.css',
 })
 export class CardLoadingComponent {
-  @Input() title: string = "Defaunt value";
-  @Input() description: string = "Defaunt value";
+  protected pageLoadingService = inject(PageLoadingService);
 
 }

@@ -27,8 +27,10 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginUsuarioDTO dados) {
+        System.out.println("Opa tentou fazer login aqui");
         var token = new UsernamePasswordAuthenticationToken(dados.email(), dados.senha());
         var authentication = manager.authenticate(token);
+
 
         return ResponseEntity.status(HttpStatus.OK).body(Map.of(
                 "situacao", true,

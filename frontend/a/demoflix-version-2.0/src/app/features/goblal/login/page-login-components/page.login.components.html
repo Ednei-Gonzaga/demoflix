@@ -7,9 +7,9 @@
         </header> 
 
         <main class="flex-1 flex flex-col h-full justify-center items-center pl-5 pr-5">
-            @switch (cardsVisibility) {
+            @switch (cardsVisibilit()) {
             @case ('login') {
-            <app-card-login-component class="w-full" (clickForgotPasswordEvent)="changeActiveCard('recoverEmail')"
+            <app-card-login-component class="w-full" (dataFormLogin)="sendLogin($event)" (clickForgotPasswordEvent)="changeActiveCard('recoverEmail')"
                 (clickCreateLoginEvent)="changeActiveCard('createLogin')"></app-card-login-component>
             }
             @case ('createLogin') {

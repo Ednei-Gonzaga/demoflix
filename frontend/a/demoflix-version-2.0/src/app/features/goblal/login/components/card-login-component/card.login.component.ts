@@ -19,7 +19,7 @@ export class CardLoginComponent {
 
   protected formLogin: FormGroup = new FormGroup({
     email: new FormControl("", [Validators.email, Validators.required]),
-    password: new FormControl("", [Validators.required])
+    senha: new FormControl("", [Validators.required])
   });
 
   protected dataInputLogin: InputLoginData[] = [
@@ -36,7 +36,7 @@ export class CardLoginComponent {
       type: "password",
       placeholderText: "Digite sua senha",
       inconUrl: iconPassword,
-      formControl: this.formLogin.get("password") == null ? new FormControl('') : this.formLogin.get("password") as FormControl
+      formControl: this.formLogin.get("senha") == null ? new FormControl('') : this.formLogin.get("senha") as FormControl
     }
   ];
 
