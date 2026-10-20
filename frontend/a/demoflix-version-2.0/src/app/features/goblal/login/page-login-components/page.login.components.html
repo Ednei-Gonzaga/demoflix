@@ -14,7 +14,7 @@
             }
             @case ('createLogin') {
             <app-card-created-account-component class="w-full"
-                (clickLoginEvent)="changeActiveCard('login')"></app-card-created-account-component>
+                (clickLoginEvent)="changeActiveCard('login')" (dataFormCreatedLogin)="createdAccount($event)"></app-card-created-account-component>
             }
             @case ('newPassword') {
             <app-card-new-password-component class="w-full"

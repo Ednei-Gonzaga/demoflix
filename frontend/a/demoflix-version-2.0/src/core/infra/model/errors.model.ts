@@ -1,4 +1,4 @@
-export interface ErrorPatternReturn{
+export interface StandardResponse{
     mensagem: string,
     situacao: boolean
 }

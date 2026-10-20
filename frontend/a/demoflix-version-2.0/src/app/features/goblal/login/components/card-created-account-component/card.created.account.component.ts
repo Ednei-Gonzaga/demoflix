@@ -25,9 +25,9 @@ export class CardCreatedAccountComponent {
 
 
   protected formCreatedLogin: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), validatePassword]),
+    senha: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), validatePassword]),
     confirmPassword: new FormControl('', [Validators.required])
   })
 
@@ -37,7 +37,7 @@ export class CardCreatedAccountComponent {
       type: "text",
       placeholderText: "Crie seu nome ou apelido",
       inconUrl: iconUser,
-      formControl: this.formCreatedLogin.get('name') == null ? new FormControl('') : this.formCreatedLogin.get('name') as FormControl
+      formControl: this.formCreatedLogin.get('nome') == null ? new FormControl('') : this.formCreatedLogin.get('nome') as FormControl
     },
     {
       title: "Endereço E-mail",
@@ -53,7 +53,7 @@ export class CardCreatedAccountComponent {
       type: "password",
       placeholderText: "Crie sua senha",
       inconUrl: iconPassword,
-      formControl: this.formCreatedLogin.get('password') == null ? new FormControl('') : this.formCreatedLogin.get('password') as FormControl
+      formControl: this.formCreatedLogin.get('senha') == null ? new FormControl('') : this.formCreatedLogin.get('senha') as FormControl
     },
     {
       title: "Confirme Senha",
@@ -74,7 +74,7 @@ export class CardCreatedAccountComponent {
     if (this.formCreatedLogin.invalid) {
       this.floatingMessageService.updateDataMessage("Dados Incorretos!", "Um ou mais capos estão invalidos", true);
     }
-    else if (this.formCreatedLogin.get('password')?.value != this.formCreatedLogin.get('confirmPassword')?.value) {
+    else if (this.formCreatedLogin.get('senha')?.value != this.formCreatedLogin.get('confirmPassword')?.value) {
       this.floatingMessageService.updateDataMessage("Senhas não correspondem!", "O campo SENHA e CONFIRME SENHA deve ser iguais.", true);
     }
     else{

@@ -8,11 +8,11 @@ import { CardVerificationCodeComponent } from "../components/card.verification.c
 import { FloatingInformationMessageComponent } from "../../../../shared/components/floating.information.message.component/floating.information.message.component";
 import { NgClass } from "../../../../../../node_modules/@angular/common";
 import { CardLoadingComponent } from "../../../../shared/components/card.loading.component/card.loading.component";
-import { DataFormLogin } from '../models/forms.page.login.model.js';
+import { DataFormCreatedAccount, DataFormLogin } from '../models/forms.page.login.model.js';
 import { LoginService } from '../../../../../core/auth/login/service/login.service.js';
 import { PageLoadingService } from '../../../../shared/components/card.loading.component/service/page.loading.service.js';
 import { FloatingInformationService } from '../../../../shared/components/floating.information.message.component/floating.information.service.js';
-import { ErrorPatternReturn } from '../../../../../core/infra/model/errors.model.js';
+import { StandardResponse } from '../../../../../core/infra/model/errors.model.js';
 
 @Component({
   selector: 'app-page-login-components',
@@ -54,15 +54,69 @@ export class PageLoginComponents {
       },
       error: error => {
         if(error.status == 401){
+
         setTimeout(() => {
           this.changeActiveCard('login');
           this.floatingInformationService.updateDataMessage("Dados Incorretos!", "Login ou Senha estão incorretos.", true);
         },2000);
+
+        }else if(error.status === 0){
+          setTimeout(() => {
+            this.changeActiveCard('login');
+            this.floatingInformationService.updateDataMessage("Falha na conexão!", "Não foi possível conectar ao servidor. Verifique sua conexão com a internet e tente novamente.", true);
+        },2000);
+        }else {
+          this.changeActiveCard("createLogin");
+
+          this.floatingInformationService.updateDataMessage(
+            "Erro ao criar conta!",
+            "Não foi possível concluir seu cadastro. Tente novamente mais tarde.",
+            true
+          );
         }
         
       }
     })
   }
 
+
+  protected createdAccount(dataFormCratedAccount: DataFormCreatedAccount){
+
+    this.pageLoadingService.updateMessage("Criando Conta", "Aguarde enquanto estamos registando seus dados...");
+    this.changeActiveCard("loadingCard");
+
+    this.loginService.createAccount(dataFormCratedAccount).subscribe({
+      next: response => {
+        this.floatingInformationService.updateDataMessage('Conta Criada!', 'Você já pode fazer login e aproveitar o Demoflix.', false);
+
+        setTimeout(() => {
+          this.changeActiveCard("login");
+        }, 2000)
+
+      },
+
+      error: error => {
+
+        if(error.status == 422){
+          this.changeActiveCard("createLogin")
+          this.floatingInformationService.updateDataMessage('Conta já cadastrada!', 'Já existe uma conta vinculada a este e-mail. Tente fazer login ou utilize outro endereço de e-mail.', true);
+        }else if(error.status === 0){
+          setTimeout(() => {
+            this.changeActiveCard('login');
+            this.floatingInformationService.updateDataMessage("Falha na conexão!", "Não foi possível conectar ao servidor. Verifique sua conexão com a internet e tente novamente.", true);
+        },2000);
+        }else {
+          this.changeActiveCard("createLogin");
+
+          this.floatingInformationService.updateDataMessage(
+            "Erro ao criar conta!",
+            "Não foi possível concluir seu cadastro. Tente novamente mais tarde.",
+            true
+          );
+        }
+
+      }
+    })
+  }
 }
 
