@@ -4,13 +4,13 @@ import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.
 import { InputLoginComponentTs } from '../input-login-component/input.login.component.ts';
 import { ButtonLoginSubmitComponent } from '../button-login-submit-component/button.login.submit.component';
 import { InputLoginData } from '../../login-date-model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { DataFormRecoverEmail } from '../../models/forms.page.login.model';
 import { FloatingInformationService } from '../../../../../shared/components/floating.information.message.component/floating.information.service';
 
 @Component({
   selector: 'app-card-recover-email-password-component',
-  imports: [TitleCardsPageLoginComponent, ButtonLoginSubmitComponent, InputLoginComponentTs, LoginAuthLinkComponent],
+  imports: [TitleCardsPageLoginComponent, ButtonLoginSubmitComponent, InputLoginComponentTs, LoginAuthLinkComponent, ɵInternalFormsSharedModule, ReactiveFormsModule],
   templateUrl: './card.recover.email.password.component.html',
   styleUrl: './card.recover.email.password.component.css',
 })

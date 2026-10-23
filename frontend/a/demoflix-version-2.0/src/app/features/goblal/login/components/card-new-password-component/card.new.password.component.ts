@@ -10,6 +10,7 @@ import { validatePassword } from '../../validators/password.validator.form';
 import { DataNewPassword } from '../../models/forms.page.login.model';
 import { FloatingInformationService } from '../../../../../shared/components/floating.information.message.component/floating.information.service';
 import { NgClass } from "../../../../../../../node_modules/@angular/common";
+import { validateFildIsNumber } from '../../validators/codeVerification.validator.form';
 
 @Component({
   selector: 'app-card-new-password-component',
@@ -20,17 +21,26 @@ import { NgClass } from "../../../../../../../node_modules/@angular/common";
 export class CardNewPasswordComponent {
 
   protected formNewPassword: FormGroup = new FormGroup({
-    password: new FormControl('', [Validators.required, validatePassword, Validators.maxLength(16), Validators.minLength(8)]),
+    codigo: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6), validateFildIsNumber]),
+    senha: new FormControl('', [Validators.required, validatePassword, Validators.maxLength(16), Validators.minLength(8)]),
     confirmPassword: new FormControl('', [Validators.required])
   });
 
   protected dataInputLogin: InputLoginData[] =
-    [{
+    [
+    {
+    title: "Código de Verificação",
+    placeholderText: "098079",
+    type: "text",
+    inconUrl: "https://api.iconify.design/material-symbols:password.svg?color=%23e0e0e0",
+    formControl: this.formNewPassword.get('codigo') == null ? new FormControl('') : this.formNewPassword.get('codigo') as FormControl
+  },
+      {
       title: "nova senha",
       placeholderText: "********",
       type: "password",
       inconUrl: iconPassword,
-      formControl: this.formNewPassword.get('password') == null ? new FormControl('') : this.formNewPassword.get('password') as FormControl
+      formControl: this.formNewPassword.get('senha') == null ? new FormControl('') : this.formNewPassword.get('senha') as FormControl
     },
     {
       title: "Confirme nova senha",
@@ -54,11 +64,12 @@ export class CardNewPasswordComponent {
     if(this.formNewPassword.invalid){
       this.floatingMessageService.updateDataMessage("Campo Incorreto!", "SENHA não está no formato válido.", true)
     }
-    else if(this.formNewPassword.get('password') == this.formNewPassword.get('confirmPassword') ){
+    else if(this.formNewPassword.get('senha')?.value != this.formNewPassword.get('confirmPassword')?.value ){
       this.floatingMessageService.updateDataMessage("Senhas não correspondem!", "Os campos SENHA e CONFIRME SENHA devem ser iguais.", true)
     }
     else{
       this.dataFormNewPassword.emit(this.formNewPassword.value as DataNewPassword);
+      console.log(this.formNewPassword.value as DataNewPassword)
     }
 
   }

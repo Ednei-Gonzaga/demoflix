@@ -8,11 +8,12 @@ import { CardVerificationCodeComponent } from "../components/card.verification.c
 import { FloatingInformationMessageComponent } from "../../../../shared/components/floating.information.message.component/floating.information.message.component";
 import { NgClass } from "../../../../../../node_modules/@angular/common";
 import { CardLoadingComponent } from "../../../../shared/components/card.loading.component/card.loading.component";
-import { DataFormCreatedAccount, DataFormLogin } from '../models/forms.page.login.model.js';
+import { DataFormCreatedAccount, DataFormLogin, DataFormRecoverEmail, DataNewPassword } from '../models/forms.page.login.model.js';
 import { LoginService } from '../../../../../core/auth/login/service/login.service.js';
 import { PageLoadingService } from '../../../../shared/components/card.loading.component/service/page.loading.service.js';
 import { FloatingInformationService } from '../../../../shared/components/floating.information.message.component/floating.information.service.js';
 import { StandardResponse } from '../../../../../core/infra/model/errors.model.js';
+import { UserPasswordUpdateRequest } from '../../../../../core/models/user.model.js';
 
 @Component({
   selector: 'app-page-login-components',
@@ -26,9 +27,9 @@ export class PageLoginComponents {
   private pageLoadingService = inject(PageLoadingService);
   private floatingInformationService = inject(FloatingInformationService)
 
-  protected cardsVisibilit =signal<"login" | "createLogin" | "newPassword" | "recoverEmail" | "verificationCode" | "loadingCard">("login");
+  protected cardsVisibilit =signal<"login" | "createLogin" | "newPassword" | "recoverEmail"  | "loadingCard">("login");
 
-  protected changeActiveCard(nameCard: "login" | "createLogin" | "newPassword" | "recoverEmail" | "verificationCode"  | "loadingCard"): void{
+  protected changeActiveCard(nameCard: "login" | "createLogin" | "newPassword" | "recoverEmail"   | "loadingCard"): void{
     this.cardsVisibilit.set(nameCard)
   }
  
@@ -37,7 +38,7 @@ export class PageLoginComponents {
 
   protected sendLogin(dataFormLogin: DataFormLogin){
     // Colocando card de carreamento
-    this.pageLoadingService.updateMessage("Entrando na Conta", "Aguarde enquanto estamos verificando seus dados...");
+    this.pageLoadingService.updateMessage("Entrando na Conta...", "Aguarde enquanto estamos verificando seus dados...");
     this.changeActiveCard("loadingCard");
 
     // Realizando login
@@ -82,7 +83,7 @@ export class PageLoginComponents {
 
   protected createdAccount(dataFormCratedAccount: DataFormCreatedAccount){
 
-    this.pageLoadingService.updateMessage("Criando Conta", "Aguarde enquanto estamos registando seus dados...");
+    this.pageLoadingService.updateMessage("Criando Conta...", "Aguarde enquanto estamos registando seus dados...");
     this.changeActiveCard("loadingCard");
 
     this.loginService.createAccount(dataFormCratedAccount).subscribe({
@@ -116,6 +117,70 @@ export class PageLoginComponents {
         }
 
       }
+    })
+  }
+
+  protected sendPasswordRecoveryCode (dataFormRecover: DataFormRecoverEmail){
+    this.pageLoadingService.updateMessage("Enviando Codigo..", "Estamos enviando código para seu e-mail...");
+    this.changeActiveCard("loadingCard");
+
+    this.loginService.sendPasswordRecoveryCode(dataFormRecover).subscribe({
+      next: response => {  
+        setTimeout(() => {
+          this.changeActiveCard("newPassword");
+          this.floatingInformationService.updateDataMessage(
+            "Código enviado!",
+            "Verifique seu e-mail e informe o código de 6 dígitos.",
+            false
+          );
+          
+        }, 2000);
+        
+      },
+      error: error => {
+            this.floatingInformationService.updateDataMessage(
+            "Código não enviado!",
+            "Não foi possível concluir sua solicitação. Tente novamente mais tarde.",
+            true
+          );
+          this.changeActiveCard("recoverEmail");
+      }
+    })
+  }
+
+  protected changePasswordRequest(formNewPassword: DataNewPassword){
+    const fullDataForNewPassword = {
+      codigo: formNewPassword.codigo,
+      novaSenha: formNewPassword.senha,
+      email: localStorage.getItem('recoveryEmail')
+      }
+    
+      alert(fullDataForNewPassword.codigo)
+      alert(fullDataForNewPassword.novaSenha)
+      alert(fullDataForNewPassword.email)
+
+
+      this.pageLoadingService.updateMessage("Verificando Dados...", "Estamos validando seu código de verificação e conferindo se sua nova senha atende aos requisitos. Aguarde um instante...");
+    this.changeActiveCard("loadingCard");
+
+    this.loginService.changePasswordRequest(fullDataForNewPassword as UserPasswordUpdateRequest).subscribe({
+      next: response => {
+        this.floatingInformationService.updateDataMessage("Senha Alterada!", "Sua senha foi redefinida com sucesso. Agora você já pode entrar na sua conta com sua nova senha.", false);
+        this.changeActiveCard("login");
+      },
+      error: error => {
+        this.changeActiveCard("newPassword");
+          if(error.status == 422){
+            this.floatingInformationService.updateDataMessage("Não foi possível alterar a senha!", "O e-mail ou o código de verificação é inválido. Confira os dados informados e tente novamente.", true);
+          }else{
+            this.floatingInformationService.updateDataMessage(
+            "Não foi possível alterar a senha!",
+            "Não foi possível concluir sua solicitação. Tente novamente mais tarde.",
+            true
+          );
+          }
+      }
+      
     })
   }
 }

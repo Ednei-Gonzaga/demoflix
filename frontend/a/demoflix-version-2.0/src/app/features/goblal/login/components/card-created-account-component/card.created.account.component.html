@@ -9,8 +9,8 @@ animate.enter="animate__animated animate__fadeIn" animate.leave="animate__animat
         @if ($index == 2) {
         <div class="flex flex-col">
             <app-input-login-component-ts [receiveDataInput]="data"></app-input-login-component-ts>
-            <p class="w-full max-w-100 mx-auto text-sm transition-all duration-100" [ngClass]="formCreatedLogin.get('password')?.valid ? 'text-green-400/80':'text-red-500/80'">Senha deve conter 8-16 digitos.</p>
-            <p class="w-full max-w-100 mx-auto text-sm transition-all duration-100" [ngClass]="formCreatedLogin.get('password')?.valid ? 'text-green-400/80':'text-red-500/80'">Senha deve ter uma letra maiuscula.</p>
+            <p class="w-full max-w-100 mx-auto text-sm transition-all duration-100" [ngClass]="formCreatedLogin.get('senha')?.valid ? 'text-green-400/80':'text-red-500/80'">Senha deve conter 8-16 digitos.</p>
+            <p class="w-full max-w-100 mx-auto text-sm transition-all duration-100" [ngClass]="formCreatedLogin.get('senha')?.valid ? 'text-green-400/80':'text-red-500/80'">Senha deve ter uma letra maiuscula.</p>
         </div>
         }@else {
         <app-input-login-component-ts [receiveDataInput]="data"></app-input-login-component-ts>

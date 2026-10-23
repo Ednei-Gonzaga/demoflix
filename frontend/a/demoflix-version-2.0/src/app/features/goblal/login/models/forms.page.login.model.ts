@@ -10,7 +10,8 @@ export interface DataFormCreatedAccount extends BaseAuthLogin {
 export interface DataFormLogin extends BaseAuthLogin{}
 
 export interface DataNewPassword {
-    senha: string;
+    codigo: string,
+    senha: string
 }
 
 export interface DataFormRecoverEmail {

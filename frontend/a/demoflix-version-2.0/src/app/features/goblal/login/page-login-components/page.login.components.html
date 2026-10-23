@@ -17,16 +17,12 @@
                 (clickLoginEvent)="changeActiveCard('login')" (dataFormCreatedLogin)="createdAccount($event)"></app-card-created-account-component>
             }
             @case ('newPassword') {
-            <app-card-new-password-component class="w-full"
+            <app-card-new-password-component class="w-full" (dataFormNewPassword)="changePasswordRequest($event)"
                 (clickLoginEvent)="changeActiveCard('login')"></app-card-new-password-component>
             }
             @case ('recoverEmail') {
-            <app-card-recover-email-password-component class="w-full"
+            <app-card-recover-email-password-component class="w-full" (dataFormRecoverEmail)="sendPasswordRecoveryCode($event)"
                 (clickEvent)="changeActiveCard('login')"></app-card-recover-email-password-component>
-            }
-            @case ('verificationCode') {
-            <app-card-verification-code-component
-                (clickLoginEvent)="changeActiveCard('login')"></app-card-verification-code-component>
             }
             @case ('loadingCard') {
                 <app-card-loading-component></app-card-loading-component>
