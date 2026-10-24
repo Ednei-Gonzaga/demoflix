@@ -53,10 +53,11 @@ export class CardNewPasswordComponent {
 
   @Output() clickLoginEvent = new EventEmitter<void>();
   @Output() dataFormNewPassword = new EventEmitter<DataNewPassword>();
+  @Output() clickOpenCardEmail = new EventEmitter<void>();
   private floatingMessageService = inject(FloatingInformationService);
 
   //Metodos
-  protected onClickLoginEvent() {
+  protected onClickLoginEvent(): void {
     this.clickLoginEvent.emit();
   }
 
@@ -73,5 +74,10 @@ export class CardNewPasswordComponent {
     }
 
   }
+
+  protected onClickOpenCardEmail(): void{
+      this.clickOpenCardEmail.emit();
+  }
+
 
 }

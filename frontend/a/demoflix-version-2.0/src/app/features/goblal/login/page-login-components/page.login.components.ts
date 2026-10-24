@@ -27,7 +27,7 @@ export class PageLoginComponents {
   private pageLoadingService = inject(PageLoadingService);
   private floatingInformationService = inject(FloatingInformationService)
 
-  protected cardsVisibilit =signal<"login" | "createLogin" | "newPassword" | "recoverEmail"  | "loadingCard">("login");
+  protected cardsVisibilit =signal<"login" | "createLogin" | "newPassword" | "recoverEmail"  | "loadingCard">("newPassword");
 
   protected changeActiveCard(nameCard: "login" | "createLogin" | "newPassword" | "recoverEmail"   | "loadingCard"): void{
     this.cardsVisibilit.set(nameCard)

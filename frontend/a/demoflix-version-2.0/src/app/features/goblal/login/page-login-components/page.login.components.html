@@ -18,7 +18,7 @@
             }
             @case ('newPassword') {
             <app-card-new-password-component class="w-full" (dataFormNewPassword)="changePasswordRequest($event)"
-                (clickLoginEvent)="changeActiveCard('login')"></app-card-new-password-component>
+                (clickLoginEvent)="changeActiveCard('login')" (clickOpenCardEmail)="changeActiveCard('recoverEmail')"></app-card-new-password-component>
             }
             @case ('recoverEmail') {
             <app-card-recover-email-password-component class="w-full" (dataFormRecoverEmail)="sendPasswordRecoveryCode($event)"
