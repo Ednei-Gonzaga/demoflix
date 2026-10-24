@@ -7,6 +7,7 @@ import { InputLoginData } from '../../login-date-model';
 import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { DataFormRecoverEmail } from '../../models/forms.page.login.model';
 import { FloatingInformationService } from '../../../../../shared/components/floating.information.message.component/floating.information.service';
+import { iconEmail } from '../../../../../../environments/environments-icons';
 
 @Component({
   selector: 'app-card-recover-email-password-component',
@@ -24,7 +25,7 @@ export class CardRecoverEmailPasswordComponent {
       title: "Endereço E-mail",
       placeholderText: "example@gmail.com",
       type: "email",
-      inconUrl: "https://api.iconify.design/material-symbols:mail.svg?color=%23e0e0e0",
+      inconUrl: iconEmail,
       formControl: this.formRecoverEmail.get('email') == null ? new FormControl(''): this.formRecoverEmail.get('email') as FormControl
   }
 

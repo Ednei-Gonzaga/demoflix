@@ -4,7 +4,7 @@ import { InputLoginComponentTs } from '../input-login-component/input.login.comp
 import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component';
 import { TitleCardsPageLoginComponent } from '../title-cards-page-login-component/title.cards.page.login.component';
 import { InputLoginData } from '../../login-date-model';
-import { iconPassword } from '../../../../../../environments/environments-icons';
+import { iconCodeVerificatin, iconPassword } from '../../../../../../environments/environments-icons';
 import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { validatePassword } from '../../validators/password.validator.form';
 import { DataNewPassword } from '../../models/forms.page.login.model';
@@ -32,7 +32,7 @@ export class CardNewPasswordComponent {
     title: "Código de Verificação",
     placeholderText: "098079",
     type: "text",
-    inconUrl: "https://api.iconify.design/material-symbols:password.svg?color=%23e0e0e0",
+    inconUrl: iconCodeVerificatin,
     formControl: this.formNewPassword.get('codigo') == null ? new FormControl('') : this.formNewPassword.get('codigo') as FormControl
   },
       {

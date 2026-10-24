@@ -123,6 +123,7 @@ export class PageLoginComponents {
   protected sendPasswordRecoveryCode (dataFormRecover: DataFormRecoverEmail){
     this.pageLoadingService.updateMessage("Enviando Codigo..", "Estamos enviando código para seu e-mail...");
     this.changeActiveCard("loadingCard");
+    localStorage.setItem('recoveryEmail',dataFormRecover.email);
 
     this.loginService.sendPasswordRecoveryCode(dataFormRecover).subscribe({
       next: response => {  
@@ -138,6 +139,7 @@ export class PageLoginComponents {
         
       },
       error: error => {
+        console.log(error.error)
             this.floatingInformationService.updateDataMessage(
             "Código não enviado!",
             "Não foi possível concluir sua solicitação. Tente novamente mais tarde.",
