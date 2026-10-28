@@ -10,7 +10,8 @@
             @switch (cardsVisibilit()) {
             @case ('login') {
             <app-card-login-component class="w-full" (dataFormLogin)="sendLogin($event)" (clickForgotPasswordEvent)="changeActiveCard('recoverEmail')"
-                (clickCreateLoginEvent)="changeActiveCard('createLogin')"></app-card-login-component>
+                (clickCreateLoginEvent)="changeActiveCard('createLogin')"
+                [dataFieldEmail]="loginStateService.lastLoginEmail()"></app-card-login-component>
             }
             @case ('createLogin') {
             <app-card-created-account-component class="w-full"
@@ -18,14 +19,15 @@
             }
             @case ('newPassword') {
             <app-card-new-password-component class="w-full" (dataFormNewPassword)="changePasswordRequest($event)"
-                (clickLoginEvent)="changeActiveCard('login')" (clickOpenCardEmail)="changeActiveCard('recoverEmail')"></app-card-new-password-component>
+                (clickLoginEvent)="changeActiveCard('login')" (clickOpenCardEmail)="changeActiveCard('recoverEmail')"
+                (clickRequestCodeVerificationAgain)="requestVerificationCode()"></app-card-new-password-component>
             }
             @case ('recoverEmail') {
             <app-card-recover-email-password-component class="w-full" (dataFormRecoverEmail)="sendPasswordRecoveryCode($event)"
                 (clickEvent)="changeActiveCard('login')"></app-card-recover-email-password-component>
             }
             @case ('loadingCard') {
-                <app-card-loading-component></app-card-loading-component>
+                <app-card-loading-component class="max-w-96"></app-card-loading-component>
             }
             }
 

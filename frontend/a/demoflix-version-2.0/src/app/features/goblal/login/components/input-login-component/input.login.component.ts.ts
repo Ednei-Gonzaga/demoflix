@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { InputLoginData } from '../../login-date-model';
+import { InputLoginData } from '../../models/login-date-model';
 import { FormControl, ReactiveFormsModule} from "@angular/forms";
 
 @Component({

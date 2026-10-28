@@ -1,13 +1,14 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { InputLoginComponentTs } from '../input-login-component/input.login.component.ts.js';
 import { ButtonLoginSubmitComponent } from '../button-login-submit-component/button.login.submit.component.js';
 import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component.js';
 import { TitleCardsPageLoginComponent } from '../title-cards-page-login-component/title.cards.page.login.component.js';
-import { InputLoginData } from '../../login-date-model.js';
+import { InputLoginData } from '../../models/login-date-model.js';
 import { iconEmail, iconPassword } from '../../../../../../environments/environments-icons.js';
 import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { DataFormLogin } from '../../models/forms.page.login.model.js';
 import { FloatingInformationService } from '../../../../../shared/components/floating.information.message.component/floating.information.service.js';
+import { LoginStateService } from '../../services/login.state.service.js';
 
 @Component({
   selector: 'app-card-login-component',
@@ -16,9 +17,12 @@ import { FloatingInformationService } from '../../../../../shared/components/flo
   styleUrl: './card.login.component.css',
 })
 export class CardLoginComponent {
+  @Input() dataFieldEmail: string = "";
+    protected loginStateService = inject(LoginStateService);
+  
 
   protected formLogin: FormGroup = new FormGroup({
-    email: new FormControl("", [Validators.email, Validators.required]),
+    email: new FormControl(this.loginStateService.lastLoginEmail() , [Validators.email, Validators.required]),
     senha: new FormControl("", [Validators.required])
   });
 

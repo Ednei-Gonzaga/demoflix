@@ -14,9 +14,16 @@ export class FloatingInformationService {
     isTypeError: true
   })
 
+  private timeoutResetAnimation:any;
+
   updateDataMessage(title: string, message: string, isTypeError: boolean) {
+    clearTimeout(this.timeoutResetAnimation);
+
+    this.isHidden.set(true)
+
     this.dataMessage.set({ title, message, isTypeError});
-    this.isHidden.set(false);
+
+    this.timeoutResetAnimation = setTimeout(() => {this.isHidden.set(false)}, 50);
   }
 
 

@@ -3,7 +3,7 @@ import { ButtonLoginSubmitComponent } from '../button-login-submit-component/but
 import { InputLoginComponentTs } from '../input-login-component/input.login.component.ts';
 import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component';
 import { TitleCardsPageLoginComponent } from '../title-cards-page-login-component/title.cards.page.login.component';
-import { InputLoginData } from '../../login-date-model';
+import { InputLoginData } from '../../models/login-date-model';
 import { iconCodeVerificatin, iconPassword } from '../../../../../../environments/environments-icons';
 import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { validatePassword } from '../../validators/password.validator.form';
@@ -11,6 +11,7 @@ import { DataNewPassword } from '../../models/forms.page.login.model';
 import { FloatingInformationService } from '../../../../../shared/components/floating.information.message.component/floating.information.service';
 import { NgClass } from "../../../../../../../node_modules/@angular/common";
 import { validateFildIsNumber } from '../../validators/codeVerification.validator.form';
+import { NewPasswordStateService } from '../../services/new.password.state.service';
 
 @Component({
   selector: 'app-card-new-password-component',
@@ -19,9 +20,10 @@ import { validateFildIsNumber } from '../../validators/codeVerification.validato
   styleUrl: './card.new.password.component.css',
 })
 export class CardNewPasswordComponent {
+  private newPasswordStateService = inject(NewPasswordStateService);
 
   protected formNewPassword: FormGroup = new FormGroup({
-    codigo: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6), validateFildIsNumber]),
+    codigo: new FormControl(this.newPasswordStateService.lastCodeVerification(), [Validators.required, Validators.minLength(6), Validators.maxLength(6), validateFildIsNumber]),
     senha: new FormControl('', [Validators.required, validatePassword, Validators.maxLength(16), Validators.minLength(8)]),
     confirmPassword: new FormControl('', [Validators.required])
   });
@@ -54,6 +56,8 @@ export class CardNewPasswordComponent {
   @Output() clickLoginEvent = new EventEmitter<void>();
   @Output() dataFormNewPassword = new EventEmitter<DataNewPassword>();
   @Output() clickOpenCardEmail = new EventEmitter<void>();
+  @Output() clickRequestCodeVerificationAgain = new EventEmitter<void>();
+
   private floatingMessageService = inject(FloatingInformationService);
 
   //Metodos
@@ -77,6 +81,10 @@ export class CardNewPasswordComponent {
 
   protected onClickOpenCardEmail(): void{
       this.clickOpenCardEmail.emit();
+  }
+
+  protected  requestCodeVerificationAgain(): void{
+    this.clickRequestCodeVerificationAgain.emit();
   }
 
 

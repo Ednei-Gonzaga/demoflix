@@ -3,11 +3,12 @@ import { TitleCardsPageLoginComponent } from '../title-cards-page-login-componen
 import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component';
 import { InputLoginComponentTs } from '../input-login-component/input.login.component.ts';
 import { ButtonLoginSubmitComponent } from '../button-login-submit-component/button.login.submit.component';
-import { InputLoginData } from '../../login-date-model';
+import { InputLoginData } from '../../models/login-date-model';
 import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { DataFormRecoverEmail } from '../../models/forms.page.login.model';
 import { FloatingInformationService } from '../../../../../shared/components/floating.information.message.component/floating.information.service';
 import { iconEmail } from '../../../../../../environments/environments-icons';
+import { RecoveryFormStateService } from '../../services/recovery.form.state.service';
 
 @Component({
   selector: 'app-card-recover-email-password-component',
@@ -16,8 +17,10 @@ import { iconEmail } from '../../../../../../environments/environments-icons';
   styleUrl: './card.recover.email.password.component.css',
 })
 export class CardRecoverEmailPasswordComponent {
+  private recoveryFormStateService = inject(RecoveryFormStateService);
+
   protected formRecoverEmail: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.email, Validators.required])
+    email: new FormControl(this.recoveryFormStateService.lastEmailRecovery(), [Validators.email, Validators.required])
   });
 
   protected dataInputLogin: InputLoginData =

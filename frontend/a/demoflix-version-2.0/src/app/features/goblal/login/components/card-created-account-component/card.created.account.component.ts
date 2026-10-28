@@ -4,12 +4,13 @@ import { InputLoginComponentTs } from '../input-login-component/input.login.comp
 import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component';
 import { TitleCardsPageLoginComponent } from '../title-cards-page-login-component/title.cards.page.login.component';
 import { iconEmail, iconPassword, iconUser } from '../../../../../../environments/environments-icons';
-import { InputLoginData } from '../../login-date-model';
+import { InputLoginData } from '../../models/login-date-model';
 import { AbstractControl, ReactiveFormsModule, FormControl, FormGroup, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
 import { FloatingInformationService } from '../../../../../shared/components/floating.information.message.component/floating.information.service';
 import { DataFormCreatedAccount } from '../../models/forms.page.login.model';
 import { NgClass } from "../../../../../../../node_modules/@angular/common";
 import { validatePassword } from '../../validators/password.validator.form';
+import { CreateAccountStateService } from '../../services/create.account.state.service';
 
 @Component({
   selector: 'app-card-created-account-component',
@@ -21,12 +22,13 @@ export class CardCreatedAccountComponent {
   @Output() clickLoginEvent = new EventEmitter<void>();
   @Output() dataFormCreatedLogin = new EventEmitter<DataFormCreatedAccount>();
   private floatingMessageService = inject(FloatingInformationService);
+  private createAccountStateService = inject(CreateAccountStateService);
 
 
 
   protected formCreatedLogin: FormGroup = new FormGroup({
-    nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    nome: new FormControl(this.createAccountStateService.lastDataCreateAccount().nome, [Validators.required, Validators.minLength(3)]),
+    email: new FormControl(this.createAccountStateService.lastDataCreateAccount().email, [Validators.required, Validators.email]),
     senha: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16), validatePassword]),
     confirmPassword: new FormControl('', [Validators.required])
   })

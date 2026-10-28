@@ -3,7 +3,7 @@ import { ButtonLoginSubmitComponent } from '../button-login-submit-component/but
 import { InputLoginComponentTs } from '../input-login-component/input.login.component.ts';
 import { LoginAuthLinkComponent } from '../login.auth.link.component/login.auth.link.component';
 import { TitleCardsPageLoginComponent } from '../title-cards-page-login-component/title.cards.page.login.component';
-import { InputLoginData } from '../../login-date-model';
+import { InputLoginData } from '../../models/login-date-model';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { validateFildIsNumber } from '../../validators/codeVerification.validator.form';
 import { DataFormRecoverEmail } from '../../models/forms.page.login.model';
